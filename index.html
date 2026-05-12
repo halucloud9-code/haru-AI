@@ -6,19 +6,23 @@
   <title>α 共鳴シート v2 ｜ リトリートα 2026-05-13</title>
   <style>
     :root {
-      color-scheme: dark;
-      --bg: #0a0a0a;
-      --bg-elev: #141414;
-      --bg-card: #1a1a1a;
-      --ink: #f5f1e8;
-      --ink-dim: #8a857a;
-      --ink-mute: #4a463e;
-      --gold: #c9a85c;
-      --gold-dim: #8a7740;
-      --crimson: #b54545;
-      --line: #2a2823;
-      --line-glow: #3d3a32;
-      --good: #7fb069;
+      color-scheme: light;
+      --bg: #efe9dc;            /* cream paper */
+      --bg-soft: #e7e0ce;       /* darker cream (sidebar) */
+      --card: #fdfaf2;          /* white card */
+      --card-hover: #fbf6e8;
+      --ink: #3a322a;           /* warm brown */
+      --ink-dim: #7a6e5e;       /* muted brown */
+      --ink-mute: #b5a98e;      /* light beige-grey */
+      --gold: #9a8455;          /* muted olive gold */
+      --gold-bright: #b89a5d;
+      --gold-soft: #efe5c8;     /* gold tint */
+      --sepia: #5b4f44;         /* dark sepia for number badges */
+      --crimson: #a85c4d;       /* muted clay red */
+      --line: #d8cdb6;          /* beige border */
+      --line-soft: #e6dcc5;
+      --good: #6f8c5a;          /* muted leaf green */
+      --shadow: 0 2px 14px rgba(74, 48, 24, 0.06);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -26,34 +30,21 @@
     html, body {
       background: var(--bg);
       color: var(--ink);
-      font-family: 'Hiragino Mincho ProN', '游明朝', 'YuMincho', 'Yu Mincho', 'MS Mincho', serif;
+      font-family: 'Yu Mincho', 'YuMincho', 'Hiragino Mincho ProN', '游明朝', 'MS Mincho', serif;
       font-weight: 400;
       min-height: 100vh;
       overflow-x: hidden;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at top left, rgba(201, 168, 92, 0.05), transparent 50%),
-        radial-gradient(ellipse at bottom right, rgba(181, 69, 69, 0.03), transparent 50%);
-      pointer-events: none;
-      z-index: 0;
     }
 
     .layout {
       display: grid;
       grid-template-columns: 320px 1fr;
       min-height: 100vh;
-      position: relative;
-      z-index: 1;
     }
 
     /* ─── サイドバー ─── */
     aside {
-      background: var(--bg-elev);
+      background: var(--bg-soft);
       border-right: 1px solid var(--line);
       padding: 32px 22px 24px;
       overflow-y: auto;
@@ -75,7 +66,7 @@
       letter-spacing: 0.18em;
       color: var(--ink);
       margin-bottom: 2px;
-      font-weight: 300;
+      font-weight: 500;
     }
 
     .brand-sub {
@@ -91,57 +82,55 @@
     label {
       display: block;
       color: var(--ink-dim);
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.3em;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
       margin-bottom: 6px;
-      text-transform: uppercase;
     }
 
     input[type="text"], textarea {
       width: 100%;
-      background: var(--bg-card);
+      background: var(--card);
       border: 1px solid var(--line);
+      border-radius: 10px;
       color: var(--ink);
-      padding: 11px 13px;
+      padding: 11px 14px;
       font: inherit;
       font-size: 14px;
-      line-height: 1.6;
+      line-height: 1.7;
       outline: none;
-      transition: border-color 0.2s, background 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
       letter-spacing: 0.02em;
     }
 
     input[type="text"]:focus, textarea:focus {
       border-color: var(--gold);
-      background: #1f1d18;
+      box-shadow: 0 0 0 3px rgba(154, 132, 85, 0.12);
     }
 
     input::placeholder, textarea::placeholder {
       color: var(--ink-mute);
-      font-style: italic;
     }
 
     .progress-block {
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
-      padding: 14px 0;
+      padding: 16px 0;
       margin: 16px 0;
     }
 
     .progress-label {
-      font-size: 9px;
+      font-size: 10px;
       letter-spacing: 0.3em;
       color: var(--ink-dim);
-      text-transform: uppercase;
       margin-bottom: 6px;
     }
 
     .progress-count {
-      font-size: 30px;
+      font-size: 32px;
       letter-spacing: 0.05em;
       color: var(--ink);
-      font-weight: 300;
+      font-weight: 400;
     }
 
     .progress-count span {
@@ -150,10 +139,11 @@
     }
 
     .progress-bar {
-      height: 2px;
+      height: 3px;
       background: var(--line);
-      margin-top: 8px;
+      margin-top: 10px;
       overflow: hidden;
+      border-radius: 2px;
     }
 
     .progress-bar > span {
@@ -166,29 +156,30 @@
 
     .presenter-list {
       list-style: none;
-      margin: 0 -8px;
+      margin: 0 -6px;
     }
 
     .presenter-list li {
-      padding: 9px 14px 9px 12px;
+      padding: 10px 12px 10px 10px;
       border-left: 2px solid transparent;
       cursor: pointer;
       transition: background 0.18s, border-color 0.18s, color 0.18s;
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 13px;
+      font-size: 14px;
       letter-spacing: 0.04em;
       color: var(--ink);
+      border-radius: 0 6px 6px 0;
     }
 
     .presenter-list li:hover {
-      background: var(--bg-card);
-      border-left-color: var(--gold-dim);
+      background: var(--card-hover);
+      border-left-color: var(--gold-bright);
     }
 
     .presenter-list li.active {
-      background: var(--bg-card);
+      background: var(--card);
       border-left-color: var(--gold);
       color: var(--gold);
     }
@@ -200,7 +191,7 @@
     .presenter-list li::before {
       content: '◇';
       color: var(--ink-mute);
-      font-size: 8px;
+      font-size: 9px;
       flex-shrink: 0;
     }
 
@@ -216,7 +207,7 @@
       letter-spacing: 0;
     }
 
-    .presenter-list li.active .num { color: var(--gold-dim); }
+    .presenter-list li.active .num { color: var(--gold); }
 
     .top3 {
       margin-top: 22px;
@@ -225,16 +216,15 @@
     }
 
     .top3-title {
-      font-size: 9px;
+      font-size: 10px;
       letter-spacing: 0.3em;
       color: var(--crimson);
-      text-transform: uppercase;
       margin-bottom: 10px;
     }
 
     .top3-item {
       font-size: 13px;
-      padding: 5px 0;
+      padding: 6px 0;
       color: var(--ink);
       display: flex;
       justify-content: space-between;
@@ -244,7 +234,7 @@
 
     .top3-item .rank {
       color: var(--crimson);
-      font-size: 11px;
+      font-size: 13px;
       letter-spacing: 0.1em;
     }
 
@@ -272,43 +262,51 @@
 
     button.primary {
       background: var(--gold);
-      color: var(--bg);
-      border: none;
+      color: var(--card);
+      border: 1px solid var(--gold);
+      border-radius: 10px;
       padding: 13px 28px;
-      font-size: 12px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      font-weight: 600;
     }
 
-    button.primary:hover { background: var(--ink); }
-    button.primary:disabled { background: var(--ink-mute); cursor: not-allowed; }
+    button.primary:hover {
+      background: var(--ink);
+      border-color: var(--ink);
+    }
+    button.primary:disabled {
+      background: var(--ink-mute);
+      border-color: var(--ink-mute);
+      cursor: not-allowed;
+    }
 
     button.ghost, .file-label {
-      background: transparent;
+      background: var(--card);
       color: var(--ink-dim);
       border: 1px solid var(--line);
-      padding: 10px 16px;
-      font-size: 10px;
+      border-radius: 8px;
+      padding: 9px 14px;
+      font-size: 11px;
       letter-spacing: 0.2em;
-      text-transform: uppercase;
       display: inline-block;
       cursor: pointer;
     }
 
     button.ghost:hover, .file-label:hover {
       color: var(--ink);
-      border-color: var(--gold-dim);
+      border-color: var(--gold);
+      background: var(--card-hover);
     }
 
     button.danger {
-      background: transparent;
+      background: var(--card);
       color: var(--crimson);
       border: 1px solid var(--line);
-      padding: 10px 16px;
-      font-size: 10px;
+      border-radius: 8px;
+      padding: 9px 14px;
+      font-size: 11px;
       letter-spacing: 0.2em;
-      text-transform: uppercase;
     }
 
     button.danger:hover { border-color: var(--crimson); }
@@ -317,22 +315,21 @@
 
     /* ─── メイン ─── */
     main {
-      padding: 56px 60px 24px;
-      max-width: 980px;
+      padding: 48px 56px 24px;
+      max-width: 1000px;
     }
 
     .header {
-      margin-bottom: 40px;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
       border-bottom: 1px solid var(--line);
-      padding-bottom: 28px;
     }
 
     .header-tag {
-      font-size: 10px;
-      letter-spacing: 0.4em;
+      font-size: 11px;
+      letter-spacing: 0.35em;
       color: var(--crimson);
-      text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .presenter-name-wrap {
@@ -344,10 +341,11 @@
     }
 
     .presenter-name {
-      font-size: 48px;
-      font-weight: 300;
+      font-size: 44px;
+      font-weight: 500;
       letter-spacing: 0.04em;
-      line-height: 1.05;
+      line-height: 1.1;
+      color: var(--ink);
     }
 
     .presenter-type {
@@ -359,7 +357,7 @@
     .presenter-realm {
       font-size: 16px;
       color: var(--ink-dim);
-      line-height: 1.7;
+      line-height: 1.8;
       letter-spacing: 0.04em;
     }
 
@@ -367,26 +365,28 @@
       margin-top: 10px;
       font-size: 12px;
       color: var(--crimson);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
     }
 
     /* 才覚プロフィール */
     .saikaku-profile {
-      background: var(--bg-elev);
+      background: var(--card);
       border: 1px solid var(--line);
-      padding: 32px 30px;
-      margin-bottom: 44px;
+      border-radius: 16px;
+      padding: 30px 32px;
+      margin-bottom: 36px;
+      box-shadow: var(--shadow);
       position: relative;
     }
 
     .saikaku-profile::before {
       content: 'SAIKAKU';
       position: absolute;
-      top: -8px;
+      top: -9px;
       left: 22px;
       background: var(--bg);
       padding: 0 12px;
-      font-size: 9px;
+      font-size: 10px;
       letter-spacing: 0.4em;
       color: var(--gold);
     }
@@ -398,10 +398,9 @@
     }
 
     .saikaku-cell .cell-label {
-      font-size: 9px;
+      font-size: 10px;
       letter-spacing: 0.3em;
       color: var(--ink-dim);
-      text-transform: uppercase;
       margin-bottom: 10px;
     }
 
@@ -412,7 +411,7 @@
 
     .saikaku-cell .cell-axes li {
       font-size: 15px;
-      line-height: 1.85;
+      line-height: 1.95;
       color: var(--ink);
       letter-spacing: 0.04em;
     }
@@ -424,39 +423,40 @@
 
     .uaam-bars {
       margin-top: 26px;
-      padding-top: 20px;
+      padding-top: 22px;
       border-top: 1px dashed var(--line);
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      gap: 22px;
     }
 
     .uaam-bar .bar-label {
       font-size: 10px;
       letter-spacing: 0.3em;
       color: var(--ink-dim);
-      text-transform: uppercase;
       margin-bottom: 6px;
     }
 
     .uaam-bar .bar-value {
-      font-size: 22px;
+      font-size: 24px;
       color: var(--gold);
       letter-spacing: 0.04em;
-      margin-bottom: 4px;
-      font-weight: 300;
+      margin-bottom: 6px;
+      font-weight: 500;
     }
 
     .uaam-bar .bar-value.empty {
       color: var(--ink-mute);
       font-style: italic;
       font-size: 12px;
+      font-weight: 400;
     }
 
     .uaam-bar .bar-track {
-      height: 2px;
+      height: 3px;
       background: var(--line);
       overflow: hidden;
+      border-radius: 2px;
     }
 
     .uaam-bar .bar-track > span {
@@ -466,53 +466,65 @@
     }
 
     /* 入力セクション */
-    .input-section { margin-bottom: 40px; }
-
-    .section-label {
-      font-size: 10px;
-      letter-spacing: 0.4em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .input-section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 28px 32px 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+      position: relative;
     }
 
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--line);
+    .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--sepia);
+      color: var(--card);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0;
+      margin-bottom: 14px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      margin-bottom: 8px;
     }
 
     .section-title {
       font-size: 22px;
-      font-weight: 300;
+      font-weight: 500;
       margin-bottom: 6px;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
+      color: var(--ink);
     }
 
     .section-hint {
       font-size: 13px;
       color: var(--ink-dim);
-      margin-bottom: 18px;
-      font-style: italic;
-      line-height: 1.7;
+      margin-bottom: 20px;
+      line-height: 1.8;
+      letter-spacing: 0.02em;
     }
 
     .tag-pool {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 16px 12px;
-      margin-bottom: 12px;
+      gap: 18px 14px;
+      margin-bottom: 14px;
     }
 
     .pillar-group .pillar-label {
-      font-size: 9px;
-      letter-spacing: 0.3em;
-      color: var(--gold-dim);
-      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      color: var(--gold);
       margin-bottom: 8px;
       padding-bottom: 5px;
       border-bottom: 1px solid var(--line);
@@ -521,30 +533,32 @@
     .pillar-group .pillar-chips {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 7px;
     }
 
     .tag-chip {
-      background: var(--bg-elev);
+      background: var(--bg);
       border: 1px solid var(--line);
+      border-radius: 999px;
       color: var(--ink-dim);
-      padding: 7px 13px;
-      font-size: 12px;
-      letter-spacing: 0.05em;
+      padding: 8px 14px;
+      font-size: 13px;
+      letter-spacing: 0.04em;
       font-family: inherit;
       cursor: pointer;
       transition: all 0.15s;
     }
 
     .tag-chip:hover {
-      border-color: var(--gold-dim);
+      border-color: var(--gold);
       color: var(--ink);
     }
 
     .tag-chip.selected {
       border-color: var(--gold);
-      background: rgba(201, 168, 92, 0.12);
-      color: var(--gold);
+      background: var(--gold-soft);
+      color: var(--ink);
+      font-weight: 500;
     }
 
     .tag-chip.disabled {
@@ -552,54 +566,63 @@
       cursor: not-allowed;
     }
 
-    textarea { min-height: 88px; resize: vertical; }
+    textarea { min-height: 92px; resize: vertical; }
 
-    /* 優先度 */
+    /* 優先度 (Likert style: 大きい数字 + 下に小ラベル) */
     .priority-row {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 8px;
+      gap: 10px;
     }
 
     .priority-btn {
-      background: var(--bg-elev);
+      background: var(--bg);
       border: 1px solid var(--line);
+      border-radius: 12px;
       color: var(--ink-dim);
-      padding: 18px 0;
+      padding: 16px 6px 14px;
       font-family: inherit;
-      font-size: 26px;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .priority-btn .pri-num {
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .priority-btn .pri-lbl {
+      font-size: 11px;
+      color: var(--ink-dim);
+      letter-spacing: 0.06em;
+      line-height: 1.4;
     }
 
     .priority-btn:hover {
-      border-color: var(--gold-dim);
-      color: var(--ink);
+      border-color: var(--gold);
+      background: var(--card-hover);
     }
 
     .priority-btn.selected {
       border-color: var(--crimson);
-      background: rgba(181, 69, 69, 0.1);
-      color: var(--crimson);
+      background: rgba(168, 92, 77, 0.08);
     }
 
-    .priority-scale {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 8px;
-      font-size: 10px;
-      color: var(--ink-mute);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
+    .priority-btn.selected .pri-num { color: var(--crimson); }
+    .priority-btn.selected .pri-lbl { color: var(--crimson); }
 
     /* 保存バー */
     .save-bar {
       position: sticky;
       bottom: 0;
-      background: linear-gradient(to top, var(--bg) 75%, transparent);
+      background: linear-gradient(to top, var(--bg) 78%, rgba(239, 233, 220, 0));
       padding: 24px 0 20px;
-      margin-top: 28px;
+      margin-top: 8px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -612,13 +635,12 @@
       font-size: 11px;
       color: var(--ink-dim);
       letter-spacing: 0.2em;
-      text-transform: uppercase;
     }
 
     .save-status .dot {
       display: inline-block;
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: var(--gold);
       margin-right: 8px;
@@ -639,26 +661,28 @@
     @media (max-width: 960px) {
       .layout { grid-template-columns: 1fr; }
       aside { position: relative; max-height: none; }
-      main { padding: 28px 22px; }
-      .presenter-name { font-size: 34px; }
+      main { padding: 28px 18px; }
+      .presenter-name { font-size: 32px; }
       .saikaku-grid { grid-template-columns: 1fr; gap: 18px; }
       .uaam-bars { grid-template-columns: repeat(2, 1fr); }
       .tag-pool { grid-template-columns: repeat(2, 1fr); }
-      .priority-row { gap: 5px; }
-      .priority-btn { padding: 14px 0; font-size: 22px; }
+      .input-section { padding: 22px 20px 24px; }
+      .priority-row { gap: 6px; }
+      .priority-btn { padding: 12px 4px; }
+      .priority-btn .pri-num { font-size: 22px; }
+      .priority-btn .pri-lbl { font-size: 10px; }
     }
 
     @media print {
       body { background: white; color: black; }
-      body::before { display: none; }
       aside, .save-bar, .actions, .file-label { display: none !important; }
       .layout { display: block; }
       main { padding: 16px; max-width: 100%; }
-      .saikaku-profile, .input-section { page-break-inside: avoid; }
-      .header { border-color: #888; }
-      .tag-chip { color: #444; border-color: #ccc; }
-      .tag-chip.selected { background: #f0d894; color: #000; }
-      .priority-btn.selected { color: #b54545; }
+      .saikaku-profile, .input-section { page-break-inside: avoid; box-shadow: none; }
+      .input-section, .saikaku-profile { border-color: #aaa; }
+      .tag-chip.selected { background: #efe5c8; color: #000; }
+      .priority-btn.selected { background: #f0d8d2; }
+      .priority-btn.selected .pri-num { color: #a85c4d; }
     }
   </style>
 </head>
@@ -732,7 +756,8 @@
 
     <!-- 01: Talent Seen -->
     <div class="input-section">
-      <div class="section-label">01 — Talent Seen</div>
+      <div class="section-num">1</div>
+      <div class="section-label">Talent Seen</div>
       <div class="section-title">あなたから見えた才覚</div>
       <div class="section-hint">本人の自己認識とのズレが共鳴を生む。直感で3つまで。</div>
       <div class="tag-pool" id="tagPool"></div>
@@ -741,7 +766,8 @@
 
     <!-- 02: Connection -->
     <div class="input-section">
-      <div class="section-label">02 — Connection</div>
+      <div class="section-num">2</div>
+      <div class="section-label">Connection</div>
       <div class="section-title">繋げられる人・場・知</div>
       <div class="section-hint">この人を誰に・どこに・何に繋げられるか。</div>
       <textarea id="connection" placeholder="◯◯さんと話したら化学反応起きそう / △△の集まりに連れていきたい..."></textarea>
@@ -749,7 +775,8 @@
 
     <!-- 03: Offering -->
     <div class="input-section">
-      <div class="section-label">03 — Offering</div>
+      <div class="section-num">3</div>
+      <div class="section-label">Offering</div>
       <div class="section-title">手伝えること・差し出せるもの</div>
       <div class="section-hint">自分の才覚から、何を渡せるか。</div>
       <textarea id="offering" placeholder="言語化・構造化・場のコーディネートで..."></textarea>
@@ -757,19 +784,16 @@
 
     <!-- 04: Priority -->
     <div class="input-section">
-      <div class="section-label">04 — Priority</div>
+      <div class="section-num">4</div>
+      <div class="section-label">Priority</div>
       <div class="section-title">後で話したい度</div>
       <div class="section-hint">直感で。場が終わる前に必ず声をかけたい人ほど高く。</div>
       <div class="priority-row" id="priorityRow">
-        <button type="button" class="priority-btn" data-v="1">I</button>
-        <button type="button" class="priority-btn" data-v="2">II</button>
-        <button type="button" class="priority-btn" data-v="3">III</button>
-        <button type="button" class="priority-btn" data-v="4">IV</button>
-        <button type="button" class="priority-btn" data-v="5">V</button>
-      </div>
-      <div class="priority-scale">
-        <span>I 気になる</span>
-        <span>V 絶対声かける</span>
+        <button type="button" class="priority-btn" data-v="1"><span class="pri-num">I</span><span class="pri-lbl">気になる</span></button>
+        <button type="button" class="priority-btn" data-v="2"><span class="pri-num">II</span><span class="pri-lbl">少し話したい</span></button>
+        <button type="button" class="priority-btn" data-v="3"><span class="pri-num">III</span><span class="pri-lbl">話したい</span></button>
+        <button type="button" class="priority-btn" data-v="4"><span class="pri-num">IV</span><span class="pri-lbl">かなり</span></button>
+        <button type="button" class="priority-btn" data-v="5"><span class="pri-num">V</span><span class="pri-lbl">絶対声かける</span></button>
       </div>
     </div>
 
@@ -788,10 +812,10 @@
   const STORAGE_KEY = 'alpha-resonance-sheet-v2';
 
   const UAAM_PILLARS = [
-    { key: 'will',      label: '志', en: 'Will',      tags: ['基軸力', '認知力', '転換力'] },
-    { key: 'knowledge', label: '知', en: 'Knowledge', tags: ['熟達力', '謙学力', '論理力'] },
-    { key: 'skill',     label: '技', en: 'Skill',     tags: ['活用力', '統率力', '本質力'] },
-    { key: 'drive',     label: '衝', en: 'Drive',     tags: ['創造力', '伝達力', '協働力'] }
+    { key: 'will',      label: '志', en: 'WHY',   tags: ['基軸力', '認知力', '転換力', '熟達力'] },
+    { key: 'knowledge', label: '知', en: 'THINK', tags: ['謙学力', '論理力', '活用力', '統率力'] },
+    { key: 'skill',     label: '技', en: 'HOW',   tags: ['本質力', '創造力', '伝達力', '協働力'] },
+    { key: 'drive',     label: '衝', en: 'ACT',   tags: ['構想力', '変革力', '実装力', '影響力'] }
   ];
   const TALENT_MAX = 3;
 
