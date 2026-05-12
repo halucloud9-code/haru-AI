@@ -3,32 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>α 共鳴シート v2 ｜ リトリートα</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Serif+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <title>α 共鳴シート v2 ｜ リトリートα 2026-05-13</title>
   <style>
     :root {
-      color-scheme: light;
-      --bg: #f1e8d3;
-      --bg-soft: #ede2c8;
-      --card: #fcf7e8;
-      --card-2: #faf2dd;
-      --line: #e3d8bf;
-      --line-soft: #ede0c5;
-      --ink: #3a342a;
-      --ink-mid: #6f6555;
-      --ink-mute: #9e9277;
-      --gold: #b39554;
-      --gold-dark: #8c6f33;
-      --gold-soft: #f5edd6;
-      --gold-glow: rgba(179, 149, 84, .25);
+      color-scheme: dark;
+      --bg: #0a0a0a;
+      --bg-elev: #141414;
+      --bg-card: #1a1a1a;
+      --ink: #f5f1e8;
+      --ink-dim: #8a857a;
+      --ink-mute: #4a463e;
+      --gold: #c9a85c;
+      --gold-dim: #8a7740;
       --crimson: #b54545;
-      --crimson-soft: #f3dada;
-      --good: #6e8f5b;
-      --shadow: 0 6px 30px rgba(124, 96, 40, .07);
-      --serif-jp: 'Noto Serif JP', 'Yu Mincho', 'Hiragino Mincho ProN', '游明朝', serif;
-      --serif-en: 'Cormorant Garamond', 'Noto Serif JP', serif;
+      --line: #2a2823;
+      --line-glow: #3d3a32;
+      --good: #7fb069;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,11 +26,10 @@
     html, body {
       background: var(--bg);
       color: var(--ink);
-      font-family: var(--serif-jp);
+      font-family: 'Hiragino Mincho ProN', '游明朝', 'YuMincho', 'Yu Mincho', 'MS Mincho', serif;
       font-weight: 400;
       min-height: 100vh;
-      letter-spacing: .02em;
-      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     body::before {
@@ -48,8 +37,8 @@
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(ellipse at top left, rgba(179, 149, 84, .07), transparent 50%),
-        radial-gradient(ellipse at bottom right, rgba(181, 69, 69, .03), transparent 60%);
+        radial-gradient(ellipse at top left, rgba(201, 168, 92, 0.05), transparent 50%),
+        radial-gradient(ellipse at bottom right, rgba(181, 69, 69, 0.03), transparent 50%);
       pointer-events: none;
       z-index: 0;
     }
@@ -64,263 +53,253 @@
 
     /* ─── サイドバー ─── */
     aside {
-      background: rgba(252, 247, 232, .55);
-      border-right: 1px solid var(--line-soft);
-      padding: 32px 26px 28px;
+      background: var(--bg-elev);
+      border-right: 1px solid var(--line);
+      padding: 32px 22px 24px;
       overflow-y: auto;
       max-height: 100vh;
       position: sticky;
       top: 0;
-      backdrop-filter: blur(8px);
     }
 
     .brand-en {
-      font-family: var(--serif-en);
-      font-size: 11px;
-      letter-spacing: .42em;
-      color: var(--gold-dark);
+      font-size: 10px;
+      letter-spacing: 0.42em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .brand-jp {
+      font-size: 22px;
+      letter-spacing: 0.18em;
+      color: var(--ink);
+      margin-bottom: 2px;
+      font-weight: 300;
+    }
+
+    .brand-sub {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--ink-dim);
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .field { margin-bottom: 14px; }
+
+    label {
+      display: block;
+      color: var(--ink-dim);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      padding: 11px 13px;
+      font: inherit;
+      font-size: 14px;
+      line-height: 1.6;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    input[type="text"]:focus, textarea:focus {
+      border-color: var(--gold);
+      background: #1f1d18;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: var(--ink-mute);
+      font-style: italic;
+    }
+
+    .progress-block {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 0;
+      margin: 16px 0;
+    }
+
+    .progress-label {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: var(--ink-dim);
       text-transform: uppercase;
       margin-bottom: 6px;
     }
 
-    .brand-jp {
-      font-family: var(--serif-jp);
-      font-weight: 500;
-      font-size: 22px;
-      letter-spacing: .12em;
-      color: var(--ink);
-      margin-bottom: 4px;
-    }
-
-    .brand-sub {
-      font-family: var(--serif-en);
-      font-size: 10px;
-      letter-spacing: .3em;
-      color: var(--ink-mute);
-      text-transform: uppercase;
-      margin-bottom: 26px;
-    }
-
-    .field { margin-bottom: 16px; }
-
-    .field-label {
-      display: block;
-      font-family: var(--serif-en);
-      font-size: 10px;
-      letter-spacing: .32em;
-      color: var(--ink-mute);
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .side-input {
-      background: var(--card);
-      border: 1px solid var(--line);
-      color: var(--ink);
-      padding: 10px 13px;
-      font-family: inherit;
-      font-size: 13px;
-      letter-spacing: .03em;
-      border-radius: 10px;
-      width: 100%;
-    }
-
-    .side-input:focus {
-      outline: none;
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px var(--gold-glow);
-    }
-
-    .progress {
-      border-top: 1px solid var(--line-soft);
-      border-bottom: 1px solid var(--line-soft);
-      padding: 18px 0;
-      margin: 18px 0 20px;
-    }
-
     .progress-count {
-      font-family: var(--serif-en);
       font-size: 30px;
-      letter-spacing: .04em;
+      letter-spacing: 0.05em;
       color: var(--ink);
-      line-height: 1;
-      font-weight: 400;
+      font-weight: 300;
     }
 
     .progress-count span {
       color: var(--ink-mute);
-      font-size: 18px;
-      margin-left: 2px;
+      font-size: 16px;
     }
 
     .progress-bar {
-      height: 3px;
-      background: var(--line-soft);
-      margin-top: 12px;
-      border-radius: 2px;
+      height: 2px;
+      background: var(--line);
+      margin-top: 8px;
       overflow: hidden;
     }
 
-    .progress-bar > i {
+    .progress-bar > span {
       display: block;
       height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--gold-dark), var(--gold));
-      transition: width .4s ease;
+      width: 0;
+      background: var(--gold);
+      transition: width 0.3s ease;
     }
 
     .presenter-list {
       list-style: none;
-      margin: 4px 0 0;
-      max-height: 44vh;
-      overflow-y: auto;
-      padding-right: 4px;
+      margin: 0 -8px;
     }
 
-    .presenter-list::-webkit-scrollbar { width: 6px; }
-    .presenter-list::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
-
     .presenter-list li {
-      padding: 10px 12px;
-      margin: 2px 0;
-      border: 1px solid transparent;
-      border-radius: 10px;
+      padding: 9px 14px 9px 12px;
+      border-left: 2px solid transparent;
       cursor: pointer;
-      transition: all .18s ease;
+      transition: background 0.18s, border-color 0.18s, color 0.18s;
       display: flex;
       align-items: center;
       gap: 10px;
       font-size: 13px;
-      letter-spacing: .04em;
-      color: var(--ink-mid);
-      background: transparent;
+      letter-spacing: 0.04em;
+      color: var(--ink);
     }
 
     .presenter-list li:hover {
-      background: var(--card);
-      border-color: var(--line-soft);
-      color: var(--ink);
+      background: var(--bg-card);
+      border-left-color: var(--gold-dim);
     }
 
     .presenter-list li.active {
-      background: var(--gold-soft);
-      border-color: var(--gold);
-      color: var(--ink);
-      box-shadow: 0 4px 14px rgba(179, 149, 84, .15);
+      background: var(--bg-card);
+      border-left-color: var(--gold);
+      color: var(--gold);
     }
 
     .presenter-list li.done {
-      color: var(--ink-mid);
+      color: var(--ink-dim);
     }
 
-    .presenter-list li.done .mark { color: var(--gold-dark); }
-    .presenter-list li:not(.done) .mark { color: var(--ink-mute); }
+    .presenter-list li::before {
+      content: '◇';
+      color: var(--ink-mute);
+      font-size: 8px;
+      flex-shrink: 0;
+    }
 
-    .mark {
-      font-size: 9px;
-      width: 9px;
-      line-height: 1;
+    .presenter-list li.done::before {
+      content: '◆';
+      color: var(--gold);
     }
 
     .num {
-      font-family: var(--serif-en);
       font-size: 11px;
       color: var(--ink-mute);
       min-width: 22px;
-      letter-spacing: .06em;
+      letter-spacing: 0;
     }
 
-    .li-name {
-      flex: 1;
-      min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
+    .presenter-list li.active .num { color: var(--gold-dim); }
 
-    .side-tools {
+    .top3 {
       margin-top: 22px;
       padding-top: 18px;
-      border-top: 1px solid var(--line-soft);
+      border-top: 1px solid var(--line);
+    }
+
+    .top3-title {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: var(--crimson);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .top3-item {
+      font-size: 13px;
+      padding: 5px 0;
+      color: var(--ink);
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       gap: 8px;
+      letter-spacing: 0.04em;
     }
 
-    .side-row {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 8px;
+    .top3-item .rank {
+      color: var(--crimson);
+      font-size: 11px;
+      letter-spacing: 0.1em;
     }
 
-    .add-btn {
-      background: var(--card);
-      border: 1px solid var(--line);
-      color: var(--gold-dark);
-      padding: 0 14px;
-      font-family: var(--serif-en);
-      font-size: 20px;
-      border-radius: 10px;
-      transition: all .15s;
-    }
-
-    .add-btn:hover { border-color: var(--gold); background: var(--gold-soft); }
-
-    .note {
+    .top3-empty {
       font-size: 11px;
       color: var(--ink-mute);
-      letter-spacing: .08em;
-      line-height: 1.75;
-      margin-top: 12px;
+      font-style: italic;
     }
 
-    /* ─── ボタン共通 ─── */
-    button { cursor: pointer; font-family: inherit; }
+    .side-actions {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ─── ボタン ─── */
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
 
     button.primary {
       background: var(--gold);
-      color: #fff;
-      border: 1px solid var(--gold);
-      padding: 13px 26px;
+      color: var(--bg);
+      border: none;
+      padding: 13px 28px;
       font-size: 12px;
-      letter-spacing: .26em;
-      font-family: var(--serif-jp);
-      font-weight: 500;
-      border-radius: 10px;
-      transition: all .2s;
-      box-shadow: 0 4px 14px var(--gold-glow);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      font-weight: 700;
     }
 
-    button.primary:hover {
-      background: var(--gold-dark);
-      border-color: var(--gold-dark);
-      transform: translateY(-1px);
-    }
+    button.primary:hover { background: var(--ink); }
+    button.primary:disabled { background: var(--ink-mute); cursor: not-allowed; }
 
-    button.primary:disabled {
-      opacity: .35;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    button.ghost {
-      background: var(--card);
-      color: var(--ink-mid);
+    button.ghost, .file-label {
+      background: transparent;
+      color: var(--ink-dim);
       border: 1px solid var(--line);
-      padding: 12px 20px;
-      font-size: 11px;
-      letter-spacing: .22em;
-      border-radius: 10px;
-      transition: all .15s;
+      padding: 10px 16px;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      display: inline-block;
+      cursor: pointer;
     }
 
-    button.ghost:hover {
+    button.ghost:hover, .file-label:hover {
       color: var(--ink);
-      border-color: var(--gold);
-      background: var(--gold-soft);
+      border-color: var(--gold-dim);
     }
-
-    button.ghost:disabled { opacity: .35; cursor: not-allowed; }
 
     button.danger {
       background: transparent;
@@ -328,509 +307,358 @@
       border: 1px solid var(--line);
       padding: 10px 16px;
       font-size: 10px;
-      letter-spacing: .22em;
-      border-radius: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
     }
 
-    button.danger:hover { border-color: var(--crimson); background: var(--crimson-soft); }
-
-    .file-label {
-      display: inline-block;
-      background: var(--card);
-      color: var(--ink-mid);
-      border: 1px solid var(--line);
-      padding: 11px 18px;
-      font-size: 10px;
-      letter-spacing: .22em;
-      border-radius: 10px;
-      cursor: pointer;
-      text-align: center;
-    }
-
-    .file-label:hover { color: var(--ink); border-color: var(--gold); background: var(--gold-soft); }
+    button.danger:hover { border-color: var(--crimson); }
 
     input[type="file"] { display: none; }
 
     /* ─── メイン ─── */
     main {
-      padding: 48px 56px 32px;
+      padding: 56px 60px 24px;
       max-width: 980px;
-      width: 100%;
     }
 
-    /* 上部進捗バー */
-    .top-progress {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--serif-jp);
-      font-size: 13px;
-      color: var(--ink-mid);
-      letter-spacing: .1em;
-      margin-bottom: 8px;
-    }
-
-    .top-progress strong {
-      font-weight: 500;
-      color: var(--ink);
-      font-family: var(--serif-en);
-      letter-spacing: .04em;
-    }
-
-    .top-progress-bar {
-      height: 2px;
-      background: var(--line-soft);
-      border-radius: 2px;
-      overflow: hidden;
-      margin-bottom: 28px;
-    }
-
-    .top-progress-bar > i {
-      display: block;
-      height: 100%;
-      width: 0%;
-      background: var(--gold);
-      transition: width .4s ease;
-    }
-
-    /* 発表者ヘッダー */
     .header {
-      margin-bottom: 32px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--line-soft);
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 28px;
     }
 
     .header-tag {
-      font-family: var(--serif-en);
-      font-size: 11px;
-      letter-spacing: .42em;
+      font-size: 10px;
+      letter-spacing: 0.4em;
       color: var(--crimson);
       text-transform: uppercase;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
-    .presenter-name-input {
-      font-family: var(--serif-jp);
-      font-weight: 400;
-      font-size: 44px;
-      letter-spacing: .04em;
-      line-height: 1.15;
-      background: transparent;
-      border: none;
-      border-bottom: 1px dashed transparent;
-      color: var(--ink);
-      padding: 4px 0;
-      width: 100%;
-      outline: none;
-      transition: border-color .2s;
+    .presenter-name-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 18px;
+      margin-bottom: 12px;
     }
 
-    .presenter-name-input:hover { border-bottom-color: var(--line); }
-    .presenter-name-input:focus { border-bottom-color: var(--gold); }
-    .presenter-name-input::placeholder { color: var(--ink-mute); font-style: italic; font-weight: 300; }
+    .presenter-name {
+      font-size: 48px;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      line-height: 1.05;
+    }
 
-    .header-type {
+    .presenter-type {
+      font-size: 12px;
+      color: var(--gold);
+      letter-spacing: 0.18em;
+    }
+
+    .presenter-realm {
+      font-size: 16px;
+      color: var(--ink-dim);
+      line-height: 1.7;
+      letter-spacing: 0.04em;
+    }
+
+    .presenter-note {
       margin-top: 10px;
-      font-size: 13px;
-      color: var(--ink-mid);
-      letter-spacing: .08em;
-    }
-
-    .header-type .badge {
-      display: inline-block;
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 3px 12px;
-      margin-right: 8px;
-      font-family: var(--serif-en);
-      font-size: 11px;
-      letter-spacing: .12em;
-      color: var(--gold-dark);
+      font-size: 12px;
+      color: var(--crimson);
+      letter-spacing: 0.1em;
     }
 
     /* 才覚プロフィール */
-    .saikaku-card {
-      background: var(--card);
+    .saikaku-profile {
+      background: var(--bg-elev);
       border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 26px 28px;
-      margin-bottom: 40px;
-      box-shadow: var(--shadow);
+      padding: 32px 30px;
+      margin-bottom: 44px;
       position: relative;
     }
 
-    .saikaku-card::before {
+    .saikaku-profile::before {
       content: 'SAIKAKU';
       position: absolute;
-      top: -10px;
+      top: -8px;
       left: 22px;
       background: var(--bg);
       padding: 0 12px;
-      font-family: var(--serif-en);
-      font-size: 10px;
-      letter-spacing: .4em;
-      color: var(--gold-dark);
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      color: var(--gold);
     }
-
-    .saikaku-title {
-      font-family: var(--serif-jp);
-      font-size: 16px;
-      line-height: 1.7;
-      color: var(--ink);
-      letter-spacing: .06em;
-      margin-bottom: 18px;
-      padding-bottom: 16px;
-      border-bottom: 1px dashed var(--line);
-      font-weight: 500;
-    }
-
-    .saikaku-title:empty,
-    .saikaku-card.no-title .saikaku-title { display: none; }
 
     .saikaku-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
+      gap: 28px;
     }
 
     .saikaku-cell .cell-label {
-      font-family: var(--serif-en);
-      font-size: 10px;
-      letter-spacing: .32em;
-      color: var(--gold-dark);
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: var(--ink-dim);
       text-transform: uppercase;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
-    .saikaku-cell .cell-label .jp {
-      font-family: var(--serif-jp);
-      letter-spacing: .15em;
-      margin-right: 6px;
-      color: var(--ink-mid);
+    .saikaku-cell .cell-axes {
+      list-style: none;
+      padding: 0;
     }
 
-    .saikaku-cell .cell-value {
-      font-size: 14px;
-      color: var(--ink);
+    .saikaku-cell .cell-axes li {
+      font-size: 15px;
       line-height: 1.85;
-      letter-spacing: .03em;
+      color: var(--ink);
+      letter-spacing: 0.04em;
     }
 
-    .saikaku-cell .cell-value .axis {
-      display: block;
-      padding-left: 14px;
-      position: relative;
-    }
-
-    .saikaku-cell .cell-value .axis::before {
-      content: '・';
-      position: absolute;
-      left: 0;
-      color: var(--gold-dark);
-    }
-
-    .saikaku-note {
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px dashed var(--line);
-      font-size: 12px;
+    .saikaku-cell .cell-axes li::before {
+      content: '— ';
       color: var(--ink-mute);
-      letter-spacing: .08em;
-      line-height: 1.7;
     }
 
-    /* 入力セクション（質問カード風） */
-    .input-section {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 30px 34px;
-      margin-bottom: 24px;
-      box-shadow: var(--shadow);
+    .uaam-bars {
+      margin-top: 26px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--line);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
     }
 
-    .section-head {
-      display: flex;
-      align-items: center;
-      gap: 16px;
+    .uaam-bar .bar-label {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--ink-dim);
+      text-transform: uppercase;
       margin-bottom: 6px;
     }
 
-    .section-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--ink-mid);
-      color: #fff;
-      font-family: var(--serif-en);
-      font-size: 14px;
-      letter-spacing: 0;
-      flex-shrink: 0;
+    .uaam-bar .bar-value {
+      font-size: 22px;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+      font-weight: 300;
     }
 
-    .section-en {
-      font-family: var(--serif-en);
-      font-size: 11px;
-      letter-spacing: .42em;
-      color: var(--gold-dark);
+    .uaam-bar .bar-value.empty {
+      color: var(--ink-mute);
+      font-style: italic;
+      font-size: 12px;
+    }
+
+    .uaam-bar .bar-track {
+      height: 2px;
+      background: var(--line);
+      overflow: hidden;
+    }
+
+    .uaam-bar .bar-track > span {
+      display: block;
+      height: 100%;
+      background: var(--gold);
+    }
+
+    /* 入力セクション */
+    .input-section { margin-bottom: 40px; }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      color: var(--gold);
       text-transform: uppercase;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--line);
     }
 
     .section-title {
-      font-family: var(--serif-jp);
       font-size: 22px;
-      font-weight: 500;
-      letter-spacing: .06em;
-      color: var(--ink);
-      margin: 12px 0 6px;
+      font-weight: 300;
+      margin-bottom: 6px;
+      letter-spacing: 0.05em;
     }
 
     .section-hint {
       font-size: 13px;
-      color: var(--ink-mid);
-      margin-bottom: 22px;
-      letter-spacing: .04em;
+      color: var(--ink-dim);
+      margin-bottom: 18px;
+      font-style: italic;
       line-height: 1.7;
     }
 
-    textarea, input[type="text"] {
-      width: 100%;
-      background: #fff;
-      border: 1px solid var(--line);
-      color: var(--ink);
-      padding: 14px 16px;
-      font-family: inherit;
-      font-size: 15px;
-      line-height: 1.85;
-      resize: vertical;
-      letter-spacing: .03em;
-      border-radius: 12px;
-      transition: border-color .2s, box-shadow .2s;
+    .tag-pool {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px 12px;
+      margin-bottom: 12px;
     }
 
-    textarea { min-height: 110px; }
-
-    textarea:focus, input[type="text"]:focus {
-      outline: none;
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px var(--gold-glow);
-    }
-
-    textarea::placeholder, input::placeholder {
-      color: var(--ink-mute);
-      font-style: normal;
-      font-weight: 300;
-    }
-
-    /* UAAM16 タグ */
-    .pillar-group { margin-bottom: 16px; }
-    .pillar-group:last-of-type { margin-bottom: 4px; }
-
-    .pillar-label {
-      font-family: var(--serif-jp);
-      font-weight: 500;
-      font-size: 12px;
-      letter-spacing: .3em;
-      color: var(--gold-dark);
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .pillar-label .en {
-      font-family: var(--serif-en);
-      font-size: 10px;
-      letter-spacing: .35em;
-      color: var(--ink-mute);
+    .pillar-group .pillar-label {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: var(--gold-dim);
       text-transform: uppercase;
+      margin-bottom: 8px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid var(--line);
     }
 
-    .pillar-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--line-soft);
-    }
-
-    .talent-tags {
+    .pillar-group .pillar-chips {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 14px;
+      gap: 6px;
     }
 
     .tag-chip {
+      background: var(--bg-elev);
       border: 1px solid var(--line);
-      background: #fff;
-      color: var(--ink-mid);
-      padding: 9px 16px;
-      font-size: 13px;
-      letter-spacing: .08em;
-      cursor: pointer;
-      transition: all .15s;
+      color: var(--ink-dim);
+      padding: 7px 13px;
+      font-size: 12px;
+      letter-spacing: 0.05em;
       font-family: inherit;
-      border-radius: 999px;
-      line-height: 1.3;
+      cursor: pointer;
+      transition: all 0.15s;
     }
 
     .tag-chip:hover {
-      border-color: var(--gold);
+      border-color: var(--gold-dim);
       color: var(--ink);
-      background: var(--gold-soft);
     }
 
     .tag-chip.selected {
       border-color: var(--gold);
-      background: var(--gold-soft);
-      color: var(--gold-dark);
-      font-weight: 500;
-      box-shadow: 0 2px 8px var(--gold-glow);
+      background: rgba(201, 168, 92, 0.12);
+      color: var(--gold);
     }
 
-    .tag-chip:disabled {
-      opacity: .35;
+    .tag-chip.disabled {
+      opacity: 0.4;
       cursor: not-allowed;
     }
 
-    .talent-meta {
-      font-family: var(--serif-en);
-      font-size: 11px;
-      color: var(--ink-mute);
-      letter-spacing: .25em;
-      text-transform: uppercase;
-      margin: 8px 0 16px;
-    }
+    textarea { min-height: 88px; resize: vertical; }
 
-    /* Priority — Likert風 5ボタン */
+    /* 優先度 */
     .priority-row {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
-      margin-bottom: 6px;
+      gap: 8px;
     }
 
     .priority-btn {
-      background: #fff;
+      background: var(--bg-elev);
       border: 1px solid var(--line);
-      color: var(--ink-mid);
-      padding: 18px 8px 14px;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all .2s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
+      color: var(--ink-dim);
+      padding: 18px 0;
       font-family: inherit;
-    }
-
-    .priority-btn .pn {
-      font-family: var(--serif-en);
       font-size: 26px;
-      letter-spacing: .04em;
-      line-height: 1;
-      color: var(--ink);
-      font-weight: 400;
-    }
-
-    .priority-btn .pl {
-      font-size: 11px;
-      color: var(--ink-mid);
-      letter-spacing: .08em;
-      line-height: 1.4;
-      text-align: center;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
     }
 
     .priority-btn:hover {
-      border-color: var(--gold);
-      background: var(--gold-soft);
+      border-color: var(--gold-dim);
+      color: var(--ink);
     }
 
     .priority-btn.selected {
-      border-color: var(--gold);
-      background: var(--gold-soft);
-      box-shadow: 0 4px 14px var(--gold-glow);
+      border-color: var(--crimson);
+      background: rgba(181, 69, 69, 0.1);
+      color: var(--crimson);
     }
 
-    .priority-btn.selected .pn { color: var(--gold-dark); font-weight: 500; }
-    .priority-btn.selected .pl { color: var(--gold-dark); }
+    .priority-scale {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 10px;
+      color: var(--ink-mute);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
 
     /* 保存バー */
     .save-bar {
       position: sticky;
       bottom: 0;
-      background: linear-gradient(to top, var(--bg) 70%, transparent);
+      background: linear-gradient(to top, var(--bg) 75%, transparent);
       padding: 24px 0 20px;
-      margin-top: 20px;
+      margin-top: 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 16px;
       flex-wrap: wrap;
-      z-index: 5;
+      z-index: 2;
     }
 
     .save-status {
-      font-family: var(--serif-en);
       font-size: 11px;
-      color: var(--ink-mute);
-      letter-spacing: .28em;
+      color: var(--ink-dim);
+      letter-spacing: 0.2em;
       text-transform: uppercase;
     }
 
     .save-status .dot {
       display: inline-block;
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: var(--gold);
-      margin-right: 9px;
+      margin-right: 8px;
       vertical-align: middle;
+      animation: pulse 2s infinite;
     }
 
-    .save-status.active .dot {
-      background: var(--good);
-      animation: pulse 1.4s ease-in-out 2;
-    }
+    .save-status.saved .dot { background: var(--good); }
 
     @keyframes pulse {
       0%, 100% { opacity: 1; }
-      50% { opacity: .25; }
+      50% { opacity: 0.3; }
     }
 
-    .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; }
 
     /* レスポンシブ */
-    @media (max-width: 920px) {
+    @media (max-width: 960px) {
       .layout { grid-template-columns: 1fr; }
       aside { position: relative; max-height: none; }
-      main { padding: 32px 22px 24px; }
-      .presenter-name-input { font-size: 32px; }
+      main { padding: 28px 22px; }
+      .presenter-name { font-size: 34px; }
       .saikaku-grid { grid-template-columns: 1fr; gap: 18px; }
-      .input-section { padding: 24px 22px; }
-      .priority-btn .pn { font-size: 22px; }
-      .priority-btn .pl { font-size: 10px; }
+      .uaam-bars { grid-template-columns: repeat(2, 1fr); }
+      .tag-pool { grid-template-columns: repeat(2, 1fr); }
+      .priority-row { gap: 5px; }
+      .priority-btn { padding: 14px 0; font-size: 22px; }
     }
 
-    @media (max-width: 480px) {
-      .priority-row { gap: 6px; }
-      .priority-btn { padding: 14px 4px 12px; }
-      .priority-btn .pl { font-size: 9px; }
-    }
-
-    /* 印刷 */
     @media print {
-      body { background: #fff; }
+      body { background: white; color: black; }
       body::before { display: none; }
-      aside, .save-bar, .top-progress, .top-progress-bar, .header-tag { display: none !important; }
-      main { padding: 0; max-width: none; }
-      .layout { grid-template-columns: 1fr; }
-      .input-section, .saikaku-card { page-break-inside: avoid; box-shadow: none; }
+      aside, .save-bar, .actions, .file-label { display: none !important; }
+      .layout { display: block; }
+      main { padding: 16px; max-width: 100%; }
+      .saikaku-profile, .input-section { page-break-inside: avoid; }
+      .header { border-color: #888; }
+      .tag-chip { color: #444; border-color: #ccc; }
+      .tag-chip.selected { background: #f0d894; color: #000; }
+      .priority-btn.selected { color: #b54545; }
     }
   </style>
 </head>
@@ -839,444 +667,471 @@
 
   <!-- ─── サイドバー ─── -->
   <aside>
-    <div class="brand-en">Retreat Alpha</div>
+    <div class="brand-en">Retreat α · 2026.05.13</div>
     <div class="brand-jp">α 共鳴シート</div>
-    <div class="brand-sub">Resonance Record · v2</div>
+    <div class="brand-sub">Resonance Record</div>
 
     <div class="field">
-      <span class="field-label">記入者</span>
-      <input type="text" id="participantName" class="side-input" placeholder="あなたの名前" />
+      <label for="participantName">記入者</label>
+      <input id="participantName" type="text" placeholder="あなたの名前" />
     </div>
 
-    <div class="progress">
-      <span class="field-label">記録済み</span>
+    <div class="progress-block">
+      <div class="progress-label">記録済み</div>
       <div class="progress-count" id="progressCount">0<span> / 23</span></div>
-      <div class="progress-bar"><i id="progressBar"></i></div>
+      <div class="progress-bar" aria-hidden="true"><span id="progressBar"></span></div>
     </div>
 
     <ul class="presenter-list" id="presenterList"></ul>
 
-    <div class="side-tools">
-      <span class="field-label">発表者を追加</span>
-      <div class="side-row">
-        <input type="text" id="pitcherName" class="side-input" placeholder="発表者名" />
-        <button type="button" id="addPitcher" class="add-btn" aria-label="追加">＋</button>
-      </div>
-      <button type="button" id="exportCsv" class="primary">CSV 出力</button>
-      <button type="button" id="exportJson" class="ghost">JSON 保存</button>
-      <label class="file-label" for="importJson">JSON 復元</label>
+    <div class="top3">
+      <div class="top3-title">あなたが声をかけたい人 · TOP 3</div>
+      <div id="top3List"></div>
+    </div>
+
+    <div class="side-actions">
+      <button class="ghost" type="button" id="exportCsv">CSV出力</button>
+      <button class="ghost" type="button" id="exportJson">JSON保存</button>
+      <label class="file-label" for="importJson">JSON復元</label>
       <input id="importJson" type="file" accept="application/json" />
-      <button type="button" id="printSheet" class="ghost">印刷</button>
-      <button type="button" id="seedPitchers" class="ghost">23人を再読込</button>
-      <button type="button" id="clearAll" class="danger">全消去</button>
-      <p class="note">入力は端末内に自動保存されます。外部送信なし。</p>
+      <button class="ghost" type="button" id="printSheet">印刷</button>
+      <button class="danger" type="button" id="clearAll">全消去</button>
     </div>
   </aside>
 
   <!-- ─── メイン ─── -->
   <main>
-    <div class="top-progress">
-      <span>全体進捗：<strong id="topProgressText">0/23人</strong></span>
-      <strong id="topProgressPct">0%</strong>
-    </div>
-    <div class="top-progress-bar"><i id="topProgressBar"></i></div>
-
     <div class="header">
       <div class="header-tag" id="headerTag">Presenter 01 / 23</div>
-      <input type="text" id="activePitcher" class="presenter-name-input" placeholder="発表者名" />
-      <div class="header-type" id="headerType"></div>
+      <div class="presenter-name-wrap">
+        <div class="presenter-name" id="currentName">— —</div>
+        <div class="presenter-type" id="currentType"></div>
+      </div>
+      <div class="presenter-realm" id="currentRealm">—</div>
+      <div class="presenter-note" id="currentNote" style="display:none;"></div>
     </div>
 
-    <!-- 才覚プロフィール -->
-    <div class="saikaku-card" id="saikakuCard">
-      <div class="saikaku-title" id="saikakuTitle"></div>
+    <!-- 既存才覚プロフィール -->
+    <div class="saikaku-profile">
       <div class="saikaku-grid">
         <div class="saikaku-cell">
-          <div class="cell-label"><span class="jp">価値観</span>Value</div>
-          <div class="cell-value" id="profileValue">—</div>
+          <div class="cell-label">価値観 · Values</div>
+          <ul class="cell-axes" id="profileValues"></ul>
         </div>
         <div class="saikaku-cell">
-          <div class="cell-label"><span class="jp">才能</span>Talent</div>
-          <div class="cell-value" id="profileTalent">—</div>
+          <div class="cell-label">才能 · Talent</div>
+          <ul class="cell-axes" id="profileTalents"></ul>
         </div>
         <div class="saikaku-cell">
-          <div class="cell-label"><span class="jp">情熱</span>Passion</div>
-          <div class="cell-value" id="profilePassion">—</div>
+          <div class="cell-label">情熱 · Passion</div>
+          <ul class="cell-axes" id="profilePassions"></ul>
         </div>
       </div>
-      <div class="saikaku-note" id="saikakuNote"></div>
+      <div class="uaam-bars" id="uaamBars"></div>
     </div>
 
-    <!-- 01 Talent Seen -->
+    <!-- 01: Talent Seen -->
     <div class="input-section">
-      <div class="section-head">
-        <span class="section-num">1</span>
-        <span class="section-en">Talent Seen</span>
-      </div>
+      <div class="section-label">01 — Talent Seen</div>
       <div class="section-title">あなたから見えた才覚</div>
-      <div class="section-hint">UAAM 16 の中から直感で 3つまで。本人の自己認識とのズレが共鳴を生みます。</div>
-      <div id="talents"></div>
-      <div class="talent-meta" id="talentMeta">0 / 3 selected</div>
+      <div class="section-hint">本人の自己認識とのズレが共鳴を生む。直感で3つまで。</div>
+      <div class="tag-pool" id="tagPool"></div>
       <input type="text" id="talentFree" placeholder="言葉で足したいことがあれば..." />
     </div>
 
-    <!-- 02 Connection -->
+    <!-- 02: Connection -->
     <div class="input-section">
-      <div class="section-head">
-        <span class="section-num">2</span>
-        <span class="section-en">Connection</span>
-      </div>
+      <div class="section-label">02 — Connection</div>
       <div class="section-title">繋げられる人・場・知</div>
       <div class="section-hint">この人を誰に・どこに・何に繋げられるか。</div>
-      <textarea id="connection" placeholder="◯◯さんと話したら化学反応起きそう ／ △△の集まりに連れていきたい..."></textarea>
+      <textarea id="connection" placeholder="◯◯さんと話したら化学反応起きそう / △△の集まりに連れていきたい..."></textarea>
     </div>
 
-    <!-- 03 Offering -->
+    <!-- 03: Offering -->
     <div class="input-section">
-      <div class="section-head">
-        <span class="section-num">3</span>
-        <span class="section-en">Offering</span>
-      </div>
+      <div class="section-label">03 — Offering</div>
       <div class="section-title">手伝えること・差し出せるもの</div>
       <div class="section-hint">自分の才覚から、何を渡せるか。</div>
       <textarea id="offering" placeholder="言語化・構造化・場のコーディネートで..."></textarea>
     </div>
 
-    <!-- 04 Priority -->
+    <!-- 04: Priority -->
     <div class="input-section">
-      <div class="section-head">
-        <span class="section-num">4</span>
-        <span class="section-en">Priority</span>
-      </div>
+      <div class="section-label">04 — Priority</div>
       <div class="section-title">後で話したい度</div>
       <div class="section-hint">直感で。場が終わる前に必ず声をかけたい人ほど高く。</div>
       <div class="priority-row" id="priorityRow">
-        <button type="button" class="priority-btn" data-v="1"><span class="pn">1</span><span class="pl">気になる</span></button>
-        <button type="button" class="priority-btn" data-v="2"><span class="pn">2</span><span class="pl">少し話したい</span></button>
-        <button type="button" class="priority-btn" data-v="3"><span class="pn">3</span><span class="pl">話したい</span></button>
-        <button type="button" class="priority-btn" data-v="4"><span class="pn">4</span><span class="pl">必ず話したい</span></button>
-        <button type="button" class="priority-btn" data-v="5"><span class="pn">5</span><span class="pl">絶対声かける</span></button>
+        <button type="button" class="priority-btn" data-v="1">I</button>
+        <button type="button" class="priority-btn" data-v="2">II</button>
+        <button type="button" class="priority-btn" data-v="3">III</button>
+        <button type="button" class="priority-btn" data-v="4">IV</button>
+        <button type="button" class="priority-btn" data-v="5">V</button>
+      </div>
+      <div class="priority-scale">
+        <span>I 気になる</span>
+        <span>V 絶対声かける</span>
       </div>
     </div>
 
+    <!-- 保存バー -->
     <div class="save-bar">
       <div class="save-status" id="saveStatus"><span class="dot"></span>自動保存中</div>
       <div class="actions">
-        <button type="button" id="prevPitcher" class="ghost">← 前へ</button>
-        <button type="button" id="nextPitcher" class="primary">次の発表者 →</button>
+        <button type="button" class="ghost" id="prevBtn">← 前へ</button>
+        <button type="button" class="primary" id="nextBtn">次の発表者 →</button>
       </div>
     </div>
   </main>
-
 </div>
 
 <script>
-  /* ─────────────────────────────────
-   * α 共鳴シート v2
-   * リトリートα 2026年5月13-14日 用
-   * ───────────────────────────────── */
-  const STORAGE_KEY = "alpha-resonance-sheet-v2";
+  const STORAGE_KEY = 'alpha-resonance-sheet-v2';
 
-  // UAAM 16 タグ（2026年4月版 / NSV準拠）
-  const UAAM_16 = [
-    { pillar: "志", label: "認知力" },
-    { pillar: "志", label: "構想力" },
-    { pillar: "志", label: "基軸力" },
-    { pillar: "志", label: "受容力" },
-    { pillar: "知", label: "言語化" },
-    { pillar: "知", label: "整合性" },
-    { pillar: "知", label: "俯瞰" },
-    { pillar: "知", label: "深掘り" },
-    { pillar: "技", label: "段取り化" },
-    { pillar: "技", label: "場の編集" },
-    { pillar: "技", label: "ストーリー化" },
-    { pillar: "技", label: "即興" },
-    { pillar: "衝", label: "突破力" },
-    { pillar: "衝", label: "直観" },
-    { pillar: "衝", label: "繋ぎ" },
-    { pillar: "衝", label: "見立て" }
+  const UAAM_PILLARS = [
+    { key: 'will',      label: '志', en: 'Will',      tags: ['基軸力', '認知力', '転換力'] },
+    { key: 'knowledge', label: '知', en: 'Knowledge', tags: ['熟達力', '謙学力', '論理力'] },
+    { key: 'skill',     label: '技', en: 'Skill',     tags: ['活用力', '統率力', '本質力'] },
+    { key: 'drive',     label: '衝', en: 'Drive',     tags: ['創造力', '伝達力', '協働力'] }
   ];
+  const TALENT_MAX = 3;
 
-  const PILLAR_ORDER = ["志", "知", "技", "衝"];
-  const PILLAR_EN = { "志": "Aspire", "知": "Discern", "技": "Craft", "衝": "Strike" };
-  const TALENT_LIMIT = 3;
+  const PRESENTERS = [{"no":1,"name":"澤井ひろき","status":"両方取得済","realm":"愛する者を護りながら、人の魂を目覚めさせる場を創る者","values":["守護","正義","結束"],"talents":["場づくり","発見力","実践力"],"passions":["愛護","探求","育成"],"uaam":{"will":94,"knowledge":85,"skill":85,"drive":86},"type":"実装マスター型","note":""},{"no":2,"name":"藤原宗賢","status":"両方取得済","realm":"宇宙の法則を優しく伝える教育者","values":["シンプル","調和","継続力"],"talents":["共感力","統合力","言語化"],"passions":["人間育成","宇宙探究","場づくり"],"uaam":{"will":86,"knowledge":85,"skill":91,"drive":93},"type":"実装型イノベーター","note":""},{"no":3,"name":"山永彩葵","status":"両方取得済","realm":"愛で文化を繋ぎ、地球に平和を咲かせる人","values":["愛と幸せ","つながり","拡大発展"],"talents":["共感力","国際対話","創造力"],"passions":["中東探求","国際交流","文化継承"],"uaam":{"will":69,"knowledge":59,"skill":74,"drive":73},"type":"共感触媒型イノベーター","note":""},{"no":4,"name":"浜口奈々","status":"両方取得済","realm":"生命を踊らせる大地の導師","values":["生命愛護","進化成長","心身統一"],"talents":["身体表現","導引力","感受統合"],"passions":["身体修行","人材覚醒","自然融合"],"uaam":{"will":73,"knowledge":66,"skill":63,"drive":71},"type":"内省的ビジョナリー","note":""},{"no":5,"name":"藤田由美子","status":"両方取得済","realm":"愛で統率し、王族美学を現世に降ろす者","values":["愛","品格","天命"],"talents":["直観力","統率力","実行力"],"passions":["王族美学","帝王学","変容物語"],"uaam":{"will":79,"knowledge":73,"skill":67,"drive":58},"type":"深慮する理想主義の実践者","note":""},{"no":6,"name":"原田祐介","status":"両方取得済","realm":"地域に愛される金融教育の伝道師","values":["信頼","貢献","家族愛"],"talents":["行動力","伝達力","直観力"],"passions":["教育","地域貢献","自然体験"],"uaam":{"will":59,"knowledge":61,"skill":61,"drive":64},"type":"アイデア創発型実践者","note":""},{"no":7,"name":"坂口友亮","status":"両方取得済","realm":"人の可能性を社会に実装する者","values":["可能性","恩返し","挑戦"],"talents":["統合力","実行力","洞察力"],"passions":["内省","応援","実装"],"uaam":{"will":64,"knowledge":63,"skill":70,"drive":63},"type":"協調型実装クラフター","note":""},{"no":8,"name":"宇田川昌美","status":"才覚のみ","realm":"一体感を統合し、人の覚醒を導く存在","values":["統一性","調和","霊性"],"talents":["統合力","探究力","慈愛力"],"passions":["覚醒支援","意識探究","和の創造"],"uaam":{"will":null,"knowledge":null,"skill":null,"drive":null},"type":"","note":"メアド未確認"},{"no":9,"name":"藤田明日香","status":"才覚のみ","realm":"自由の風で人の魂を目覚めさせる者","values":["自由追求","成長信念","安定基盤"],"talents":["場感知力","実行力","統合力"],"passions":["人間開発","精神世界","物語世界"],"uaam":{"will":null,"knowledge":null,"skill":null,"drive":null},"type":"","note":""},{"no":10,"name":"塚原厚","status":"才覚のみ","realm":"使命の枠組みで世界を浸す者","values":["使命感","物語性","信頼"],"talents":["構造化","問い生成","直感行動"],"passions":["世界浸透","空間設計","探究変容"],"uaam":{"will":null,"knowledge":null,"skill":null,"drive":null},"type":"","note":""},{"no":11,"name":"根本輝尚","status":"才覚のみ","realm":"仲間と共に歩む道を照らし、一人ひとりの可能性を育て上げる人","values":["利他","共生","誠実"],"talents":["リーダーシップ","俯瞰力","場づくり"],"passions":["教育","人間関係","体感"],"uaam":{"will":null,"knowledge":null,"skill":null,"drive":null},"type":"","note":""},{"no":12,"name":"飯塚玄氣","status":"両方取得済","realm":"魂の叡智を言語化し、世界に調和の文明を織り上げる者","values":["魂の共鳴","調和の追求","真正性"],"talents":["認知力","場づくり","共鳴化"],"passions":["叡智の探求","魂友創造","本質体験"],"uaam":{"will":79,"knowledge":74,"skill":75,"drive":71},"type":"調和型アクセラレーター","note":""},{"no":13,"name":"道又正人","status":"才覚のみ","realm":"真理を優しさで包み込む覚醒メソッド創造者","values":["慈愛","本質志向","安心感"],"talents":["抽象翻訳力","共感理解","探求力"],"passions":["覚醒探求","成長支援","創造表現"],"uaam":{"will":null,"knowledge":null,"skill":null,"drive":null},"type":"","note":"メアド未確認"},{"no":14,"name":"遠山直樹","status":"UAAMのみ","realm":"(才覚領域 未取得)","values":[],"talents":[],"passions":[],"uaam":{"will":76,"knowledge":84,"skill":89,"drive":85},"type":"創造実装型イノベーター","note":"才覚領域 未取得 / UAAMのみ"},{"no":15,"name":"石井裕二","status":"UAAMのみ","realm":"(才覚領域 未取得)","values":[],"talents":[],"passions":[],"uaam":{"will":61,"knowledge":65,"skill":64,"drive":68},"type":"堅実な実装プランナー","note":"才覚領域 未取得 / UAAMのみ"},{"no":16,"name":"杉永竜之助","status":"両方取得済","realm":"人の心に火を灯し、才覚を開花させる点火師","values":["愛情","点火使命","誠実リーダーシップ"],"talents":["関係構築","才能発見","コンテンツ創造"],"passions":["教育創造","人材開発","文化継承"],"uaam":{"will":60,"knowledge":70,"skill":74,"drive":64},"type":"協創ファシリテーター","note":""},{"no":17,"name":"長田広美","status":"UAAMのみ","realm":"(才覚領域 未取得)","values":[],"talents":[],"passions":[],"uaam":{"will":84,"knowledge":71,"skill":79,"drive":68},"type":"価値軸リーダー","note":"才覚領域 未取得 / UAAMのみ"},{"no":18,"name":"秋葉勇人","status":"両方取得済","realm":"システムの本質を見抜き、人々の覚醒を通じて新しい世界を創造する者","values":["覚醒支援","未来創造","共鳴解放"],"talents":["構造把握","未来設計","調和創造"],"passions":["理念実現","能力開花","価値創出"],"uaam":{"will":75,"knowledge":78,"skill":69,"drive":74},"type":"協働型実装リーダー","note":""},{"no":19,"name":"島田智幸","status":"才覚のみ","realm":"天地の氣を循環させ、大地を蘇らせる者","values":["命の循環","共生","血脈継承"],"talents":["仕組み化","創造力","本質把握"],"passions":["大地再生","真理探究","霊性実践"],"uaam":{"will":null,"knowledge":null,"skill":null,"drive":null},"type":"","note":""},{"no":20,"name":"鈴木栄子","status":"才覚のみ","realm":"蜂と共に地球を癒し、純粋な生命を育む人","values":["純粋性","愛護","地球愛"],"talents":["没入力","共鳴力","場づくり"],"passions":["生命力","育成","表現"],"uaam":{"will":null,"knowledge":null,"skill":null,"drive":null},"type":"","note":""},{"no":21,"name":"細川さゆり","status":"両方取得済","realm":"愛で育て、地球を癒やす者","values":["愛情","調和","喜び"],"talents":["育成力","直感力","実働力"],"passions":["治癒","奉仕","探求"],"uaam":{"will":60,"knowledge":65,"skill":61,"drive":66},"type":"アイデア起点型イノベーター","note":""},{"no":22,"name":"根木まりさ","status":"両方取得済","realm":"音楽で人の心をつなぎ、笑顔の輪を世界に広げる架け橋","values":["つながり","自由","豊かさ"],"talents":["実行力","設計力","調和力"],"passions":["表現創造","知的探求","体験設計"],"uaam":{"will":56,"knowledge":68,"skill":61,"drive":70},"type":"アイデア共鳴型触媒","note":""},{"no":23,"name":"谷口尚子","status":"才覚のみ","realm":"自由な魂で成長の扉を開く導き手","values":["自由性","行動性","感受性"],"talents":["復活力","創造力","癒し力"],"passions":["成長支援","感動体験","愛情表現"],"uaam":{"will":null,"knowledge":null,"skill":null,"drive":null},"type":"","note":"5/13 14:30〜2時間中抜け+遅刻"}];
 
-  // 参加者シード（retreat_alpha 23名）
-  const PARTICIPANT_SEED = [
-    {"no":1,"name":"澤井ひろき","title":"愛する者を護りながら、人の魂を目覚めさせる場を創る者","value":["守護","正義","結束"],"talent":["場づくり","発見力","実践力"],"passion":["愛護","探求","育成"],"type":"実装マスター型","note":""},
-    {"no":2,"name":"藤原宗賢","title":"宇宙の法則を優しく伝える教育者","value":["シンプル","調和","継続力"],"talent":["共感力","統合力","言語化"],"passion":["人間育成","宇宙探究","場づくり"],"type":"実装型イノベーター","note":""},
-    {"no":3,"name":"山永彩葵","title":"愛で文化を繋ぎ、地球に平和を咲かせる人","value":["愛と幸せ","つながり","拡大発展"],"talent":["共感力","国際対話","創造力"],"passion":["中東探求","国際交流","文化継承"],"type":"共感触媒型イノベーター","note":""},
-    {"no":4,"name":"浜口奈々","title":"生命を踊らせる大地の導師","value":["生命愛護","進化成長","心身統一"],"talent":["身体表現","導引力","感受統合"],"passion":["身体修行","人材覚醒","自然融合"],"type":"内省的ビジョナリー","note":""},
-    {"no":5,"name":"藤田由美子","title":"愛で統率し、王族美学を現世に降ろす者","value":["愛","品格","天命"],"talent":["直観力","統率力","実行力"],"passion":["王族美学","帝王学","変容物語"],"type":"深慮する理想主義の実践者","note":""},
-    {"no":6,"name":"原田祐介","title":"地域に愛される金融教育の伝道師","value":["信頼","貢献","家族愛"],"talent":["行動力","伝達力","直観力"],"passion":["教育","地域貢献","自然体験"],"type":"アイデア創発型実践者","note":""},
-    {"no":7,"name":"坂口友亮","title":"人の可能性を社会に実装する者","value":["可能性","恩返し","挑戦"],"talent":["統合力","実行力","洞察力"],"passion":["内省","応援","実装"],"type":"協調型実装クラフター","note":""},
-    {"no":8,"name":"宇田川昌美","title":"一体感を統合し、人の覚醒を導く存在","value":["統一性","調和","霊性"],"talent":["統合力","探究力","慈愛力"],"passion":["覚醒支援","意識探究","和の創造"],"type":"","note":""},
-    {"no":9,"name":"藤田明日香","title":"自由の風で人の魂を目覚めさせる者","value":["自由追求","成長信念","安定基盤"],"talent":["場感知力","実行力","統合力"],"passion":["人間開発","精神世界","物語世界"],"type":"","note":""},
-    {"no":10,"name":"塚原厚","title":"使命の枠組みで世界を浸す者","value":["使命感","物語性","信頼"],"talent":["構造化","問い生成","直感行動"],"passion":["世界浸透","空間設計","探究変容"],"type":"","note":""},
-    {"no":11,"name":"根本輝尚","title":"仲間と共に歩む道を照らし、一人ひとりの可能性を育て上げる人","value":["利他","共生","誠実"],"talent":["リーダーシップ","俯瞰力","場づくり"],"passion":["教育","人間関係","体感"],"type":"","note":""},
-    {"no":12,"name":"飯塚玄氣","title":"魂の叡智を言語化し、世界に調和の文明を織り上げる者","value":["魂の共鳴","調和の追求","真正性"],"talent":["認知力","場づくり","共鳴化"],"passion":["叡智の探求","魂友創造","本質体験"],"type":"調和型アクセラレーター","note":""},
-    {"no":13,"name":"道又正人","title":"真理を優しさで包み込む覚醒メソッド創造者","value":["慈愛","本質志向","安心感"],"talent":["抽象翻訳力","共感理解","探求力"],"passion":["覚醒探求","成長支援","創造表現"],"type":"","note":""},
-    {"no":14,"name":"遠山直樹","title":"","value":[],"talent":[],"passion":[],"type":"創造実装型イノベーター","note":"才覚領域 未取得 / UAAMのみ"},
-    {"no":15,"name":"石井裕二","title":"","value":[],"talent":[],"passion":[],"type":"堅実な実装プランナー","note":"才覚領域 未取得 / UAAMのみ"},
-    {"no":16,"name":"杉永竜之助","title":"人の心に火を灯し、才覚を開花させる点火師","value":["愛情","点火使命","誠実リーダーシップ"],"talent":["関係構築","才能発見","コンテンツ創造"],"passion":["教育創造","人材開発","文化継承"],"type":"協創ファシリテーター","note":""},
-    {"no":17,"name":"長田広美","title":"","value":[],"talent":[],"passion":[],"type":"価値軸リーダー","note":"才覚領域 未取得 / UAAMのみ"},
-    {"no":18,"name":"秋葉勇人","title":"システムの本質を見抜き、人々の覚醒を通じて新しい世界を創造する者","value":["覚醒支援","未来創造","共鳴解放"],"talent":["構造把握","未来設計","調和創造"],"passion":["理念実現","能力開花","価値創出"],"type":"協働型実装リーダー","note":""},
-    {"no":19,"name":"島田智幸","title":"天地の氣を循環させ、大地を蘇らせる者","value":["命の循環","共生","血脈継承"],"talent":["仕組み化","創造力","本質把握"],"passion":["大地再生","真理探究","霊性実践"],"type":"","note":""},
-    {"no":20,"name":"鈴木栄子","title":"蜂と共に地球を癒し、純粋な生命を育む人","value":["純粋性","愛護","地球愛"],"talent":["没入力","共鳴力","場づくり"],"passion":["生命力","育成","表現"],"type":"","note":""},
-    {"no":21,"name":"細川さゆり","title":"愛で育て、地球を癒やす者","value":["愛情","調和","喜び"],"talent":["育成力","直感力","実働力"],"passion":["治癒","奉仕","探求"],"type":"アイデア起点型イノベーター","note":""},
-    {"no":22,"name":"根木まりさ","title":"音楽で人の心をつなぎ、笑顔の輪を世界に広げる架け橋","value":["つながり","自由","豊かさ"],"talent":["実行力","設計力","調和力"],"passion":["表現創造","知的探求","体験設計"],"type":"アイデア共鳴型触媒","note":""},
-    {"no":23,"name":"谷口尚子","title":"自由な魂で成長の扉を開く導き手","value":["自由性","行動性","感受性"],"talent":["復活力","創造力","癒し力"],"passion":["成長支援","感動体験","愛情表現"],"type":"","note":"5/13 14:30〜2時間中抜け+遅刻"}
-  ];
-
-  const emptyResponse = () => ({
+  const emptyEntry = () => ({
     talents: [],
-    talentFree: "",
-    connection: "",
-    offering: "",
-    priority: "",
-    updatedAt: ""
+    talentFree: '',
+    connection: '',
+    offering: '',
+    priority: 0,
+    updatedAt: ''
   });
 
-  const seedFromParticipants = () => PARTICIPANT_SEED.map((p) => ({
-    name: p.name,
-    profile: {
-      title: p.title || "",
-      value: p.value || [],
-      talent: p.talent || [],
-      passion: p.passion || [],
-      type: p.type || "",
-      note: p.note || ""
-    },
-    ...emptyResponse()
-  }));
+  let state = loadState();
+  let currentIdx = clampIdx(state.activeIndex);
+
+  function clampIdx(i) {
+    if (typeof i !== 'number' || isNaN(i)) return 0;
+    return Math.max(0, Math.min(PRESENTERS.length - 1, i));
+  }
 
   function loadState() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
-        const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed.pitchers) && parsed.pitchers.length) {
-          return {
-            participantName: parsed.participantName || "",
-            activeIndex: parsed.activeIndex || 0,
-            pitchers: parsed.pitchers.map((p, i) => ({
-              name: p.name || (PARTICIPANT_SEED[i]?.name) || `発表者 ${String(i + 1).padStart(2, "0")}`,
-              profile: p.profile || (PARTICIPANT_SEED[i] ? {
-                title: PARTICIPANT_SEED[i].title,
-                value: PARTICIPANT_SEED[i].value,
-                talent: PARTICIPANT_SEED[i].talent,
-                passion: PARTICIPANT_SEED[i].passion,
-                type: PARTICIPANT_SEED[i].type,
-                note: PARTICIPANT_SEED[i].note
-              } : { title: "", value: [], talent: [], passion: [], type: "", note: "" }),
-              ...emptyResponse(),
-              ...p
-            }))
-          };
-        }
+        const p = JSON.parse(raw);
+        return {
+          participantName: p.participantName || '',
+          activeIndex: typeof p.activeIndex === 'number' ? p.activeIndex : 0,
+          entries: p.entries && typeof p.entries === 'object' ? p.entries : {}
+        };
       }
-    } catch (err) {
-      console.warn("保存データの読み込みに失敗しました", err);
+    } catch (e) {
+      console.warn('保存データの読み込みに失敗', e);
     }
-    return { participantName: "", activeIndex: 0, pitchers: seedFromParticipants() };
+    return { participantName: '', activeIndex: 0, entries: {} };
   }
 
-  let state = loadState();
-  let activeIndex = Math.max(0, Math.min(state.activeIndex || 0, state.pitchers.length - 1));
-  let saveTimer = null;
-
-  const $ = (id) => document.getElementById(id);
-
-  function isComplete(item) {
-    return Boolean(
-      item.priority ||
-      item.talents.length ||
-      (item.talentFree && item.talentFree.trim()) ||
-      (item.connection && item.connection.trim()) ||
-      (item.offering && item.offering.trim())
-    );
-  }
-
-  function saveState(showNotice = false) {
-    state.activeIndex = activeIndex;
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    } catch (err) {
-      console.warn("保存に失敗", err);
-    }
-    if (showNotice) flashSaved();
-    renderList();
+  function saveState(markSaved) {
+    state.activeIndex = currentIdx;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    if (markSaved) flashSaved();
   }
 
   function flashSaved() {
-    const el = $("saveStatus");
-    el.classList.add("active");
+    const el = document.getElementById('saveStatus');
+    el.classList.add('saved');
+    el.lastChild.nodeValue = ' 保存しました';
     clearTimeout(flashSaved.t);
-    flashSaved.t = setTimeout(() => el.classList.remove("active"), 1400);
+    flashSaved.t = setTimeout(() => {
+      el.classList.remove('saved');
+      el.lastChild.nodeValue = ' 自動保存中';
+    }, 1200);
+  }
+
+  function getEntry(no) {
+    if (!state.entries[no]) state.entries[no] = emptyEntry();
+    return state.entries[no];
+  }
+
+  function isComplete(entry) {
+    if (!entry) return false;
+    return Boolean(
+      (entry.talents && entry.talents.length) ||
+      (entry.talentFree && entry.talentFree.trim()) ||
+      (entry.connection && entry.connection.trim()) ||
+      (entry.offering && entry.offering.trim()) ||
+      entry.priority
+    );
+  }
+
+  function render() {
+    const p = PRESENTERS[currentIdx];
+    const entry = getEntry(p.no);
+
+    document.getElementById('headerTag').textContent =
+      `Presenter ${String(currentIdx + 1).padStart(2, '0')} / ${PRESENTERS.length}`;
+    document.getElementById('currentName').textContent = p.name;
+    document.getElementById('currentType').textContent = p.type || '';
+    document.getElementById('currentRealm').textContent = p.realm || '';
+
+    const noteEl = document.getElementById('currentNote');
+    if (p.note) {
+      noteEl.textContent = '※ ' + p.note;
+      noteEl.style.display = '';
+    } else {
+      noteEl.style.display = 'none';
+    }
+
+    renderAxes('profileValues', p.values);
+    renderAxes('profileTalents', p.talents);
+    renderAxes('profilePassions', p.passions);
+    renderUaam(p.uaam);
+    renderTagPool(entry);
+    document.getElementById('talentFree').value = entry.talentFree || '';
+    document.getElementById('connection').value = entry.connection || '';
+    document.getElementById('offering').value = entry.offering || '';
+    renderPriority(entry.priority);
+
+    document.getElementById('prevBtn').disabled = currentIdx === 0;
+    document.getElementById('nextBtn').textContent =
+      currentIdx === PRESENTERS.length - 1 ? '保存して終了' : '次の発表者 →';
+
+    renderSidebar();
+  }
+
+  function renderAxes(id, items) {
+    const ul = document.getElementById(id);
+    ul.innerHTML = '';
+    if (!items || !items.length) {
+      const li = document.createElement('li');
+      li.textContent = '—';
+      li.style.color = 'var(--ink-mute)';
+      ul.appendChild(li);
+      return;
+    }
+    items.forEach(v => {
+      const li = document.createElement('li');
+      li.textContent = v;
+      ul.appendChild(li);
+    });
+  }
+
+  function renderUaam(uaam) {
+    const box = document.getElementById('uaamBars');
+    box.innerHTML = '';
+    UAAM_PILLARS.forEach(pil => {
+      const v = uaam ? uaam[pil.key] : null;
+      const div = document.createElement('div');
+      div.className = 'uaam-bar';
+      if (v == null) {
+        div.innerHTML =
+          `<div class="bar-label">${pil.label} · ${pil.en}</div>` +
+          `<div class="bar-value empty">未受験</div>` +
+          `<div class="bar-track"><span style="width:0"></span></div>`;
+      } else {
+        div.innerHTML =
+          `<div class="bar-label">${pil.label} · ${pil.en}</div>` +
+          `<div class="bar-value">${v}<span style="font-size:11px;color:var(--ink-mute);letter-spacing:0.2em;"> %</span></div>` +
+          `<div class="bar-track"><span style="width:${Math.max(0, Math.min(100, v))}%"></span></div>`;
+      }
+      box.appendChild(div);
+    });
+  }
+
+  function renderTagPool(entry) {
+    const pool = document.getElementById('tagPool');
+    pool.innerHTML = '';
+    const selected = entry.talents || [];
+    const atMax = selected.length >= TALENT_MAX;
+
+    UAAM_PILLARS.forEach(pil => {
+      const group = document.createElement('div');
+      group.className = 'pillar-group';
+      const lbl = document.createElement('div');
+      lbl.className = 'pillar-label';
+      lbl.textContent = `${pil.label} ${pil.en}`;
+      group.appendChild(lbl);
+      const chips = document.createElement('div');
+      chips.className = 'pillar-chips';
+      pil.tags.forEach(t => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        const isSel = selected.includes(t);
+        btn.className = 'tag-chip' + (isSel ? ' selected' : '') + (!isSel && atMax ? ' disabled' : '');
+        btn.textContent = t;
+        btn.addEventListener('click', () => toggleTag(t));
+        chips.appendChild(btn);
+      });
+      group.appendChild(chips);
+      pool.appendChild(group);
+    });
+  }
+
+  function renderPriority(v) {
+    document.querySelectorAll('.priority-btn').forEach(b => {
+      b.classList.toggle('selected', Number(b.dataset.v) === Number(v));
+    });
+  }
+
+  function renderSidebar() {
+    const ul = document.getElementById('presenterList');
+    ul.innerHTML = '';
+    let doneCount = 0;
+    PRESENTERS.forEach((p, i) => {
+      const entry = state.entries[p.no];
+      const done = isComplete(entry);
+      if (done) doneCount++;
+      const li = document.createElement('li');
+      li.className = (i === currentIdx ? 'active ' : '') + (done ? 'done' : '');
+      li.innerHTML = `<span class="num">${String(p.no).padStart(2, '0')}</span><span>${escapeHtml(p.name)}</span>`;
+      li.addEventListener('click', () => goTo(i));
+      ul.appendChild(li);
+    });
+    document.getElementById('progressCount').innerHTML =
+      `${doneCount}<span> / ${PRESENTERS.length}</span>`;
+    document.getElementById('progressBar').style.width =
+      `${(doneCount / PRESENTERS.length) * 100}%`;
+    renderTop3();
+  }
+
+  const ROMAN = { 1: 'I', 2: 'II', 3: 'III', 4: 'IV', 5: 'V' };
+
+  function renderTop3() {
+    const box = document.getElementById('top3List');
+    const ranked = PRESENTERS
+      .map(p => ({ p, e: state.entries[p.no] }))
+      .filter(x => x.e && x.e.priority)
+      .sort((a, b) => (b.e.priority - a.e.priority) || (a.p.no - b.p.no))
+      .slice(0, 3);
+    if (!ranked.length) {
+      box.innerHTML = '<div class="top3-empty">未入力</div>';
+      return;
+    }
+    box.innerHTML = ranked
+      .map(x => `<div class="top3-item"><span>${escapeHtml(x.p.name)}</span><span class="rank">${ROMAN[x.e.priority] || ''}</span></div>`)
+      .join('');
   }
 
   function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
-  function renderList() {
-    const ul = $("presenterList");
-    ul.innerHTML = "";
-    state.pitchers.forEach((p, i) => {
-      const li = document.createElement("li");
-      const done = isComplete(p);
-      if (i === activeIndex) li.classList.add("active");
-      if (done) li.classList.add("done");
-      const dispName = p.name || `発表者 ${String(i + 1).padStart(2, "0")}`;
-      li.innerHTML = `<span class="mark">${done ? "◆" : "◇"}</span><span class="num">${String(i + 1).padStart(2, "0")}</span><span class="li-name">${escapeHtml(dispName)}</span>`;
-      li.addEventListener("click", () => {
-        updateActiveFromForm(false);
-        activeIndex = i;
-        renderForm();
-        saveState();
-        if (window.matchMedia("(max-width: 920px)").matches) {
-          $("activePitcher").scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      });
-      ul.appendChild(li);
-    });
-    const doneCount = state.pitchers.filter(isComplete).length;
-    const total = state.pitchers.length;
-    const pct = total ? Math.round((doneCount / total) * 100) : 0;
-    $("progressCount").innerHTML = `${doneCount}<span> / ${total}</span>`;
-    $("progressBar").style.width = `${pct}%`;
-    $("topProgressText").textContent = `${doneCount}/${total}人`;
-    $("topProgressPct").textContent = `${pct}%`;
-    $("topProgressBar").style.width = `${pct}%`;
+  function toggleTag(t) {
+    const p = PRESENTERS[currentIdx];
+    const entry = getEntry(p.no);
+    const i = entry.talents.indexOf(t);
+    if (i >= 0) entry.talents.splice(i, 1);
+    else if (entry.talents.length < TALENT_MAX) entry.talents.push(t);
+    else return;
+    entry.updatedAt = new Date().toISOString();
+    saveState();
+    renderTagPool(entry);
+    renderSidebar();
   }
 
-  function renderTalents(selected) {
-    const container = $("talents");
-    container.innerHTML = "";
-    PILLAR_ORDER.forEach((pillar) => {
-      const group = document.createElement("div");
-      group.className = "pillar-group";
-      const label = document.createElement("div");
-      label.className = "pillar-label";
-      label.innerHTML = `<span>${pillar}</span><span class="en">${PILLAR_EN[pillar]}</span>`;
-      group.appendChild(label);
-      const tagsWrap = document.createElement("div");
-      tagsWrap.className = "talent-tags";
-      UAAM_16.filter((t) => t.pillar === pillar).forEach((t) => {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "tag-chip" + (selected.includes(t.label) ? " selected" : "");
-        btn.textContent = t.label;
-        btn.disabled = !selected.includes(t.label) && selected.length >= TALENT_LIMIT;
-        btn.addEventListener("click", () => toggleTalent(t.label));
-        tagsWrap.appendChild(btn);
-      });
-      group.appendChild(tagsWrap);
-      container.appendChild(group);
-    });
-    $("talentMeta").textContent = `${selected.length} / ${TALENT_LIMIT} selected`;
-  }
-
-  function renderPriority(selected) {
-    document.querySelectorAll(".priority-btn").forEach((b) => {
-      b.classList.toggle("selected", b.dataset.v === String(selected));
-    });
-  }
-
-  function renderProfile(profile, index) {
-    const card = $("saikakuCard");
-    const hasProfile = profile && (profile.title || profile.value?.length || profile.talent?.length || profile.passion?.length);
-    if (!hasProfile) {
-      card.style.display = "none";
-      $("headerType").innerHTML = profile?.type
-        ? `<span class="badge">UAAM</span>${escapeHtml(profile.type)}`
-        : `<span class="badge">No.${String(index + 1).padStart(2, "0")}</span>${escapeHtml(profile?.note || "才覚プロフィール未登録")}`;
-      return;
-    }
-    card.style.display = "block";
-    $("saikakuTitle").textContent = profile.title || "";
-    card.classList.toggle("no-title", !profile.title);
-    const axes = (arr) => (arr && arr.length)
-      ? arr.map((a) => `<span class="axis">${escapeHtml(a)}</span>`).join("")
-      : "—";
-    $("profileValue").innerHTML = axes(profile.value);
-    $("profileTalent").innerHTML = axes(profile.talent);
-    $("profilePassion").innerHTML = axes(profile.passion);
-    const note = $("saikakuNote");
-    if (profile.note) {
-      note.textContent = `※ ${profile.note}`;
-      note.style.display = "block";
-    } else {
-      note.style.display = "none";
-    }
-    const headerBits = [];
-    if (profile.type) headerBits.push(`<span class="badge">${escapeHtml(profile.type)}</span>`);
-    $("headerType").innerHTML = headerBits.join("");
-  }
-
-  function renderForm() {
-    if (!state.pitchers.length) {
-      state.pitchers = seedFromParticipants();
-      activeIndex = 0;
-    }
-    activeIndex = Math.max(0, Math.min(activeIndex, state.pitchers.length - 1));
-    const item = state.pitchers[activeIndex];
-    $("participantName").value = state.participantName || "";
-    $("activePitcher").value = item.name || "";
-    $("talentFree").value = item.talentFree || "";
-    $("connection").value = item.connection || "";
-    $("offering").value = item.offering || "";
-    $("headerTag").textContent =
-      `Presenter ${String(activeIndex + 1).padStart(2, "0")} / ${String(state.pitchers.length).padStart(2, "0")}`;
-    renderProfile(item.profile, activeIndex);
-    renderTalents(item.talents);
-    renderPriority(item.priority);
-    $("prevPitcher").disabled = activeIndex === 0;
-    $("nextPitcher").textContent = activeIndex === state.pitchers.length - 1 ? "保存" : "次の発表者 →";
-    renderList();
-  }
-
-  function toggleTalent(label) {
-    const item = state.pitchers[activeIndex];
-    const arr = item.talents;
-    const idx = arr.indexOf(label);
-    if (idx >= 0) arr.splice(idx, 1);
-    else if (arr.length < TALENT_LIMIT) arr.push(label);
-    item.updatedAt = new Date().toISOString();
+  function setPriority(v) {
+    const p = PRESENTERS[currentIdx];
+    const entry = getEntry(p.no);
+    entry.priority = Number(v) || 0;
+    entry.updatedAt = new Date().toISOString();
     saveState(true);
-    renderTalents(arr);
+    renderPriority(entry.priority);
+    renderSidebar();
   }
 
-  function setPriority(value) {
-    const item = state.pitchers[activeIndex];
-    item.priority = item.priority === value ? "" : value;
-    item.updatedAt = new Date().toISOString();
-    saveState(true);
-    renderPriority(item.priority);
+  function captureTexts(markSaved) {
+    const p = PRESENTERS[currentIdx];
+    const entry = getEntry(p.no);
+    entry.talentFree = document.getElementById('talentFree').value;
+    entry.connection = document.getElementById('connection').value;
+    entry.offering = document.getElementById('offering').value;
+    state.participantName = document.getElementById('participantName').value;
+    if (entry.talentFree || entry.connection || entry.offering) {
+      entry.updatedAt = new Date().toISOString();
+    }
+    saveState(markSaved);
+    renderSidebar();
   }
 
-  function updateActiveFromForm(showNotice = false) {
-    const item = state.pitchers[activeIndex];
-    const newName = $("activePitcher").value.trim();
-    item.name = newName || `発表者 ${String(activeIndex + 1).padStart(2, "0")}`;
-    item.talentFree = $("talentFree").value;
-    item.connection = $("connection").value;
-    item.offering = $("offering").value;
-    item.updatedAt = new Date().toISOString();
-    state.participantName = $("participantName").value.trim();
-    saveState(showNotice);
+  function goTo(i) {
+    captureTexts(false);
+    currentIdx = clampIdx(i);
+    render();
+    saveState();
   }
 
-  function debounceSave() {
-    clearTimeout(saveTimer);
-    saveTimer = setTimeout(() => updateActiveFromForm(true), 600);
+  function csvEscape(v) {
+    return '"' + String(v == null ? '' : v).replaceAll('"', '""') + '"';
   }
 
-  /* ─── 出力 ─── */
+  function priorityRoman(v) { return ROMAN[v] || ''; }
+
+  function safeFilename(s) {
+    return String(s || 'anon').replace(/[^\w぀-ヿ一-鿿]/g, '_');
+  }
+
+  function exportCsv() {
+    captureTexts(false);
+    const headers = [
+      '記入者名', '発表者No.', '発表者名', '才覚領域',
+      'Talent Seen (タグ)', 'Talent 自由記述',
+      'Connection (繋げられる人・場・知)',
+      'Offering (手伝えること)',
+      'Priority', '更新日時'
+    ];
+    const rows = PRESENTERS.map(p => {
+      const e = state.entries[p.no] || emptyEntry();
+      return [
+        state.participantName || '',
+        p.no, p.name, p.realm || '',
+        (e.talents || []).join(' / '),
+        e.talentFree || '',
+        e.connection || '',
+        e.offering || '',
+        priorityRoman(e.priority),
+        e.updatedAt || ''
+      ];
+    });
+    const csv = [headers, ...rows].map(r => r.map(csvEscape).join(',')).join('\n');
+    const stamp = new Date().toISOString().slice(0, 10);
+    download(`alpha-resonance-${stamp}-${safeFilename(state.participantName)}.csv`,
+      '﻿' + csv, 'text/csv;charset=utf-8');
+  }
+
+  function exportJson() {
+    captureTexts(false);
+    const stamp = new Date().toISOString().slice(0, 10);
+    download(`alpha-resonance-${stamp}-${safeFilename(state.participantName)}.json`,
+      JSON.stringify(state, null, 2), 'application/json');
+  }
+
+  function importJson(file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const o = JSON.parse(reader.result);
+        if (!o || typeof o !== 'object') throw new Error('JSON形式が不正');
+        state = {
+          participantName: o.participantName || '',
+          activeIndex: typeof o.activeIndex === 'number' ? o.activeIndex : 0,
+          entries: o.entries && typeof o.entries === 'object' ? o.entries : {}
+        };
+        currentIdx = clampIdx(state.activeIndex);
+        document.getElementById('participantName').value = state.participantName;
+        saveState(true);
+        render();
+      } catch (e) {
+        alert('JSONを復元できませんでした。CSVではなくJSON保存で出力したファイルを選んでください。');
+      }
+    };
+    reader.readAsText(file);
+  }
+
   function download(filename, text, type) {
     const blob = new Blob([text], { type });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
+    const a = document.createElement('a');
     a.href = url;
     a.download = filename;
     document.body.appendChild(a);
@@ -1285,147 +1140,54 @@
     URL.revokeObjectURL(url);
   }
 
-  function csvEscape(v) {
-    return `"${String(v ?? "").replaceAll('"', '""')}"`;
-  }
+  document.getElementById('participantName').addEventListener('input', () => captureTexts(false));
+  document.getElementById('participantName').addEventListener('blur', () => captureTexts(true));
 
-  function exportCsv() {
-    updateActiveFromForm(false);
-    const headers = [
-      "記入者名", "No.", "発表者名", "才覚領域",
-      "Talent Seen", "Talent 自由記述",
-      "Connection", "Offering",
-      "Priority", "更新日時"
-    ];
-    const rows = state.pitchers.map((p, i) => [
-      state.participantName,
-      String(i + 1).padStart(2, "0"),
-      p.name,
-      p.profile?.title || "",
-      p.talents.join(" / "),
-      p.talentFree,
-      p.connection,
-      p.offering,
-      p.priority || "",
-      p.updatedAt
-    ]);
-    const csv = [headers, ...rows].map((r) => r.map(csvEscape).join(",")).join("\n");
-    download(`alpha-resonance-${new Date().toISOString().slice(0, 10)}.csv`, `﻿${csv}`, "text/csv;charset=utf-8");
-  }
-
-  function exportJson() {
-    updateActiveFromForm(false);
-    download(`alpha-resonance-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify(state, null, 2), "application/json");
-  }
-
-  function importJson(file) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      try {
-        const imported = JSON.parse(reader.result);
-        if (!Array.isArray(imported.pitchers)) throw new Error("pitchers not found");
-        state = {
-          participantName: imported.participantName || "",
-          activeIndex: imported.activeIndex || 0,
-          pitchers: imported.pitchers.map((p, i) => ({
-            name: p.name || (PARTICIPANT_SEED[i]?.name) || `発表者 ${String(i + 1).padStart(2, "0")}`,
-            profile: p.profile || { title: "", value: [], talent: [], passion: [], type: "", note: "" },
-            ...emptyResponse(),
-            ...p
-          }))
-        };
-        activeIndex = Math.max(0, Math.min(state.activeIndex, state.pitchers.length - 1));
-        saveState(true);
-        renderForm();
-      } catch (err) {
-        alert("JSONを復元できませんでした。出力したJSONファイルを選んでください。");
-      }
-    };
-    reader.readAsText(file);
-  }
-
-  /* ─── イベント ─── */
-  ["activePitcher", "talentFree", "connection", "offering"].forEach((id) => {
-    $(id).addEventListener("input", debounceSave);
-    $(id).addEventListener("blur", () => updateActiveFromForm(true));
-  });
-  $("participantName").addEventListener("input", debounceSave);
-  $("participantName").addEventListener("blur", () => updateActiveFromForm(true));
-
-  document.querySelectorAll(".priority-btn").forEach((btn) => {
-    btn.addEventListener("click", () => setPriority(btn.dataset.v));
+  ['talentFree', 'connection', 'offering'].forEach(id => {
+    const el = document.getElementById(id);
+    el.addEventListener('input', () => captureTexts(false));
+    el.addEventListener('blur', () => captureTexts(true));
   });
 
-  $("addPitcher").addEventListener("click", () => {
-    const name = $("pitcherName").value.trim();
-    if (!name) return;
-    updateActiveFromForm(false);
-    state.pitchers.push({
-      name,
-      profile: { title: "", value: [], talent: [], passion: [], type: "", note: "" },
-      ...emptyResponse()
-    });
-    activeIndex = state.pitchers.length - 1;
-    $("pitcherName").value = "";
-    renderForm();
-    saveState(true);
+  document.querySelectorAll('.priority-btn').forEach(b => {
+    b.addEventListener('click', () => setPriority(b.dataset.v));
   });
 
-  $("pitcherName").addEventListener("keydown", (e) => {
-    if (e.key === "Enter") { e.preventDefault(); $("addPitcher").click(); }
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    captureTexts(false);
+    if (currentIdx > 0) goTo(currentIdx - 1);
   });
 
-  $("seedPitchers").addEventListener("click", () => {
-    if (state.pitchers.some(isComplete) && !confirm("入力済みデータがあります。23人リストを再読込しますか？（入力は消えます）")) return;
-    state.pitchers = seedFromParticipants();
-    activeIndex = 0;
-    renderForm();
-    saveState(true);
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    captureTexts(true);
+    if (currentIdx < PRESENTERS.length - 1) goTo(currentIdx + 1);
   });
 
-  $("clearAll").addEventListener("click", () => {
-    if (!confirm("すべての入力を削除します。よろしいですか？")) return;
+  document.getElementById('exportCsv').addEventListener('click', exportCsv);
+  document.getElementById('exportJson').addEventListener('click', exportJson);
+  document.getElementById('printSheet').addEventListener('click', () => window.print());
+  document.getElementById('importJson').addEventListener('change', e => {
+    const f = e.target.files[0];
+    if (f) importJson(f);
+    e.target.value = '';
+  });
+  document.getElementById('clearAll').addEventListener('click', () => {
+    if (!confirm('すべての入力を消去します。よろしいですか？')) return;
     localStorage.removeItem(STORAGE_KEY);
-    state = { participantName: "", activeIndex: 0, pitchers: seedFromParticipants() };
-    activeIndex = 0;
-    renderForm();
+    state = { participantName: '', activeIndex: 0, entries: {} };
+    currentIdx = 0;
+    document.getElementById('participantName').value = '';
+    render();
   });
 
-  $("prevPitcher").addEventListener("click", () => {
-    updateActiveFromForm(false);
-    activeIndex = Math.max(0, activeIndex - 1);
-    renderForm();
-    saveState();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'ArrowLeft' && currentIdx > 0) goTo(currentIdx - 1);
+    if (e.key === 'ArrowRight' && currentIdx < PRESENTERS.length - 1) goTo(currentIdx + 1);
   });
 
-  $("nextPitcher").addEventListener("click", () => {
-    updateActiveFromForm(true);
-    if (activeIndex < state.pitchers.length - 1) {
-      activeIndex += 1;
-      renderForm();
-      saveState();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  });
-
-  $("exportCsv").addEventListener("click", exportCsv);
-  $("exportJson").addEventListener("click", exportJson);
-  $("printSheet").addEventListener("click", () => window.print());
-  $("importJson").addEventListener("change", (e) => {
-    const [file] = e.target.files;
-    if (file) importJson(file);
-    e.target.value = "";
-  });
-
-  // キーボードショートカット: Ctrl/Cmd + ←/→
-  document.addEventListener("keydown", (e) => {
-    if (!(e.ctrlKey || e.metaKey)) return;
-    if (e.key === "ArrowRight") { e.preventDefault(); $("nextPitcher").click(); }
-    if (e.key === "ArrowLeft")  { e.preventDefault(); $("prevPitcher").click(); }
-  });
-
-  renderForm();
+  document.getElementById('participantName').value = state.participantName || '';
+  render();
 </script>
 </body>
 </html>
