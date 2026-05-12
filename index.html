@@ -3,682 +3,1215 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>α 共鳴シート | 23人ピッチ用</title>
+  <title>α 共鳴シート v2 ｜ リトリートα 2026-05-13</title>
   <style>
     :root {
       color-scheme: light;
-      --bg: #f6f3ee;
-      --card: #fffaf2;
-      --ink: #231f20;
-      --muted: #6f6861;
-      --line: #e2d8ca;
-      --accent: #e5652e;
-      --accent-dark: #b9441e;
-      --accent-soft: #ffe1d3;
-      --good: #1f8a5b;
-      --shadow: 0 18px 60px rgba(74, 48, 24, .13);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --bg: #efe9dc;            /* cream paper */
+      --bg-soft: #e7e0ce;       /* darker cream (sidebar) */
+      --card: #fdfaf2;          /* white card */
+      --card-hover: #fbf6e8;
+      --ink: #3a322a;           /* warm brown */
+      --ink-dim: #7a6e5e;       /* muted brown */
+      --ink-mute: #b5a98e;      /* light beige-grey */
+      --gold: #9a8455;          /* muted olive gold */
+      --gold-bright: #b89a5d;
+      --gold-soft: #efe5c8;     /* gold tint */
+      --sepia: #5b4f44;         /* dark sepia for number badges */
+      --crimson: #a85c4d;       /* muted clay red */
+      --line: #d8cdb6;          /* beige border */
+      --line-soft: #e6dcc5;
+      --good: #6f8c5a;          /* muted leaf green */
+      --shadow: 0 2px 14px rgba(74, 48, 24, 0.06);
     }
 
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      margin: 0;
-      background:
-        radial-gradient(circle at top left, rgba(229, 101, 46, .16), transparent 36rem),
-        linear-gradient(135deg, #fff8ec 0%, var(--bg) 45%, #f0ece7 100%);
+    html, body {
+      background: var(--bg);
       color: var(--ink);
+      font-family: 'Yu Mincho', 'YuMincho', 'Hiragino Mincho ProN', '游明朝', 'MS Mincho', serif;
+      font-weight: 400;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
       min-height: 100vh;
     }
 
-    header {
-      padding: 28px min(5vw, 48px) 18px;
-      display: grid;
-      gap: 16px;
-      grid-template-columns: 1fr;
-    }
-
-    .hero {
-      background: rgba(255, 250, 242, .82);
-      border: 1px solid rgba(226, 216, 202, .9);
-      box-shadow: var(--shadow);
-      border-radius: 28px;
-      padding: clamp(22px, 4vw, 42px);
-      backdrop-filter: blur(16px);
-    }
-
-    h1 {
-      margin: 0 0 10px;
-      letter-spacing: -.04em;
-      font-size: clamp(30px, 5vw, 58px);
-      line-height: 1.02;
-    }
-
-    .lead {
-      margin: 0;
-      color: var(--muted);
-      font-size: clamp(15px, 2.2vw, 18px);
-      line-height: 1.8;
-    }
-
-    main {
-      padding: 0 min(5vw, 48px) 48px;
-      display: grid;
-      gap: 18px;
-      grid-template-columns: 360px 1fr;
-      align-items: start;
-    }
-
-    .panel, .sheet {
-      background: rgba(255, 250, 242, .92);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      border-radius: 24px;
-    }
-
-    .panel {
+    /* ─── サイドバー ─── */
+    aside {
+      background: var(--bg-soft);
+      border-right: 1px solid var(--line);
+      padding: 32px 22px 24px;
+      overflow-y: auto;
+      max-height: 100vh;
       position: sticky;
-      top: 18px;
-      padding: 18px;
+      top: 0;
     }
 
-    .sheet { padding: clamp(18px, 4vw, 34px); }
-
-    .toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
+    .brand-en {
+      font-size: 10px;
+      letter-spacing: 0.42em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 4px;
     }
 
-    button, .file-label {
-      border: 0;
-      border-radius: 999px;
-      background: var(--accent);
-      color: white;
-      padding: 11px 16px;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(229, 101, 46, .23);
-      transition: transform .16s ease, background .16s ease;
-      font-size: 14px;
+    .brand-jp {
+      font-size: 22px;
+      letter-spacing: 0.18em;
+      color: var(--ink);
+      margin-bottom: 2px;
+      font-weight: 500;
     }
 
-    button:hover, .file-label:hover { background: var(--accent-dark); transform: translateY(-1px); }
-    button.secondary, .file-label { background: #3a332d; }
-    button.ghost { background: transparent; color: var(--accent-dark); box-shadow: none; border: 1px solid var(--line); }
-    button.danger { background: #a33131; }
-    button:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+    .brand-sub {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--ink-dim);
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
 
-    input[type="file"] { display: none; }
+    .field { margin-bottom: 14px; }
 
     label {
       display: block;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 7px;
+      color: var(--ink-dim);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      margin-bottom: 6px;
     }
 
-    input[type="text"], textarea, select {
+    input[type="text"], textarea {
       width: 100%;
+      background: var(--card);
       border: 1px solid var(--line);
-      background: white;
-      border-radius: 14px;
-      padding: 12px 13px;
+      border-radius: 10px;
+      color: var(--ink);
+      padding: 11px 14px;
       font: inherit;
-      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.7;
       outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.02em;
     }
 
-    input[type="text"]:focus, textarea:focus, select:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 4px rgba(229, 101, 46, .12);
+    input[type="text"]:focus, textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(154, 132, 85, 0.12);
     }
 
-    textarea { min-height: 86px; resize: vertical; }
-
-    .field { margin-bottom: 16px; }
-
-    .pitcher-list {
-      display: grid;
-      gap: 8px;
-      margin: 14px 0;
-      max-height: 48vh;
-      overflow: auto;
-      padding-right: 3px;
+    input::placeholder, textarea::placeholder {
+      color: var(--ink-mute);
     }
 
-    .pitcher-button {
-      width: 100%;
-      border-radius: 16px;
-      border: 1px solid var(--line);
+    .progress-block {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 16px 0;
+      margin: 16px 0;
+    }
+
+    .progress-label {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--ink-dim);
+      margin-bottom: 6px;
+    }
+
+    .progress-count {
+      font-size: 32px;
+      letter-spacing: 0.05em;
       color: var(--ink);
-      background: white;
-      box-shadow: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      text-align: left;
-      padding: 12px;
-      font-weight: 800;
+      font-weight: 400;
     }
 
-    .pitcher-button.active { border-color: var(--accent); background: var(--accent-soft); }
-    .pitcher-button.done::after { content: "入力済"; color: var(--good); font-size: 12px; white-space: nowrap; }
+    .progress-count span {
+      color: var(--ink-mute);
+      font-size: 16px;
+    }
 
-    .progress {
-      height: 12px;
-      border-radius: 999px;
-      background: #eee3d5;
+    .progress-bar {
+      height: 3px;
+      background: var(--line);
+      margin-top: 10px;
       overflow: hidden;
-      margin: 12px 0 4px;
+      border-radius: 2px;
     }
 
-    .progress > span {
+    .progress-bar > span {
       display: block;
       height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--accent), #f4a03c);
-      transition: width .2s ease;
+      width: 0;
+      background: var(--gold);
+      transition: width 0.3s ease;
     }
 
-    .meta {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.55;
+    .presenter-list {
+      list-style: none;
+      margin: 0 -6px;
     }
 
-    .section {
-      border-top: 1px solid var(--line);
-      padding-top: 22px;
-      margin-top: 24px;
-    }
-
-    .section h2 {
-      margin: 0 0 12px;
-      font-size: 18px;
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .hint { color: var(--muted); font-size: 13px; margin: -5px 0 13px; }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-    }
-
-    .chip input { position: absolute; opacity: 0; pointer-events: none; }
-
-    .chip span {
-      display: inline-flex;
-      align-items: center;
-      min-height: 38px;
-      border: 1px solid var(--line);
-      background: white;
-      border-radius: 999px;
-      padding: 8px 13px;
-      color: #3b342f;
-      font-weight: 700;
+    .presenter-list li {
+      padding: 10px 12px 10px 10px;
+      border-left: 2px solid transparent;
       cursor: pointer;
-      user-select: none;
-      transition: background .15s ease, border-color .15s ease, color .15s ease;
-    }
-
-    .chip input:checked + span {
-      background: var(--accent-soft);
-      color: var(--accent-dark);
-      border-color: #f4ad8d;
-    }
-
-    .rating {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(44px, 1fr));
+      transition: background 0.18s, border-color 0.18s, color 0.18s;
+      display: flex;
+      align-items: center;
       gap: 10px;
-      max-width: 430px;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      border-radius: 0 6px 6px 0;
     }
 
-    .rating .chip span {
-      width: 100%;
-      justify-content: center;
-      border-radius: 16px;
-      font-size: 20px;
-      padding: 12px;
+    .presenter-list li:hover {
+      background: var(--card-hover);
+      border-left-color: var(--gold-bright);
     }
 
-    .sheet-head {
+    .presenter-list li.active {
+      background: var(--card);
+      border-left-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .presenter-list li.done {
+      color: var(--ink-dim);
+    }
+
+    .presenter-list li::before {
+      content: '◇';
+      color: var(--ink-mute);
+      font-size: 9px;
+      flex-shrink: 0;
+    }
+
+    .presenter-list li.done::before {
+      content: '◆';
+      color: var(--gold);
+    }
+
+    .num {
+      font-size: 11px;
+      color: var(--ink-mute);
+      min-width: 22px;
+      letter-spacing: 0;
+    }
+
+    .presenter-list li.active .num { color: var(--gold); }
+
+    .top3 {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .top3-title {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--crimson);
+      margin-bottom: 10px;
+    }
+
+    .top3-item {
+      font-size: 13px;
+      padding: 6px 0;
+      color: var(--ink);
       display: flex;
       justify-content: space-between;
-      gap: 16px;
-      align-items: end;
-      flex-wrap: wrap;
+      gap: 8px;
+      letter-spacing: 0.04em;
     }
 
-    .saved {
-      display: none;
-      color: var(--good);
-      font-weight: 800;
+    .top3-item .rank {
+      color: var(--crimson);
       font-size: 13px;
+      letter-spacing: 0.1em;
     }
 
-    .saved.show { display: inline; }
+    .top3-empty {
+      font-size: 11px;
+      color: var(--ink-mute);
+      font-style: italic;
+    }
 
-    .summary-card {
-      background: white;
+    .side-actions {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ─── ボタン ─── */
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    button.primary {
+      background: var(--gold);
+      color: var(--card);
+      border: 1px solid var(--gold);
+      border-radius: 10px;
+      padding: 13px 28px;
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      font-weight: 600;
+    }
+
+    button.primary:hover {
+      background: var(--ink);
+      border-color: var(--ink);
+    }
+    button.primary:disabled {
+      background: var(--ink-mute);
+      border-color: var(--ink-mute);
+      cursor: not-allowed;
+    }
+
+    button.ghost, .file-label {
+      background: var(--card);
+      color: var(--ink-dim);
       border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 14px;
-      margin-top: 16px;
+      border-radius: 8px;
+      padding: 9px 14px;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      display: inline-block;
+      cursor: pointer;
     }
 
-    .summary-card strong { display: block; margin-bottom: 8px; }
-    .summary-card ul { margin: 0; padding-left: 20px; color: var(--muted); line-height: 1.8; }
+    button.ghost:hover, .file-label:hover {
+      color: var(--ink);
+      border-color: var(--gold);
+      background: var(--card-hover);
+    }
 
-    @media (max-width: 920px) {
-      main { grid-template-columns: 1fr; }
-      .panel { position: static; }
-      .pitcher-list { max-height: none; }
+    button.danger {
+      background: var(--card);
+      color: var(--crimson);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 9px 14px;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+    }
+
+    button.danger:hover { border-color: var(--crimson); }
+
+    input[type="file"] { display: none; }
+
+    /* ─── メイン ─── */
+    main {
+      padding: 48px 56px 24px;
+      max-width: 1000px;
+    }
+
+    .header {
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-tag {
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      color: var(--crimson);
+      margin-bottom: 14px;
+    }
+
+    .presenter-name-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 18px;
+      margin-bottom: 12px;
+    }
+
+    .presenter-name {
+      font-size: 44px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+
+    .presenter-type {
+      font-size: 12px;
+      color: var(--gold);
+      letter-spacing: 0.18em;
+    }
+
+    .presenter-realm {
+      font-size: 16px;
+      color: var(--ink-dim);
+      line-height: 1.8;
+      letter-spacing: 0.04em;
+    }
+
+    .presenter-note {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--crimson);
+      letter-spacing: 0.08em;
+    }
+
+    /* 才覚プロフィール */
+    .saikaku-profile {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 30px 32px;
+      margin-bottom: 36px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .saikaku-profile::before {
+      content: 'SAIKAKU';
+      position: absolute;
+      top: -9px;
+      left: 22px;
+      background: var(--bg);
+      padding: 0 12px;
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+    }
+
+    .saikaku-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .saikaku-cell .cell-label {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--ink-dim);
+      margin-bottom: 10px;
+    }
+
+    .saikaku-cell .cell-axes {
+      list-style: none;
+      padding: 0;
+    }
+
+    .saikaku-cell .cell-axes li {
+      font-size: 15px;
+      line-height: 1.95;
+      color: var(--ink);
+      letter-spacing: 0.04em;
+    }
+
+    .saikaku-cell .cell-axes li::before {
+      content: '— ';
+      color: var(--ink-mute);
+    }
+
+    .uaam-bars {
+      margin-top: 26px;
+      padding-top: 22px;
+      border-top: 1px dashed var(--line);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .uaam-bar .bar-label {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--ink-dim);
+      margin-bottom: 6px;
+    }
+
+    .uaam-bar .bar-value {
+      font-size: 24px;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .uaam-bar .bar-value.empty {
+      color: var(--ink-mute);
+      font-style: italic;
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    .uaam-bar .bar-track {
+      height: 3px;
+      background: var(--line);
+      overflow: hidden;
+      border-radius: 2px;
+    }
+
+    .uaam-bar .bar-track > span {
+      display: block;
+      height: 100%;
+      background: var(--gold);
+    }
+
+    /* 入力セクション */
+    .input-section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 28px 32px 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--sepia);
+      color: var(--card);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0;
+      margin-bottom: 14px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+    }
+
+    .section-hint {
+      font-size: 13px;
+      color: var(--ink-dim);
+      margin-bottom: 20px;
+      line-height: 1.8;
+      letter-spacing: 0.02em;
+    }
+
+    .tag-pool {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px 14px;
+      margin-bottom: 14px;
+    }
+
+    .pillar-group .pillar-label {
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      color: var(--gold);
+      margin-bottom: 8px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .pillar-group .pillar-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .tag-chip {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--ink-dim);
+      padding: 8px 14px;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .tag-chip:hover {
+      border-color: var(--gold);
+      color: var(--ink);
+    }
+
+    .tag-chip.selected {
+      border-color: var(--gold);
+      background: var(--gold-soft);
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .tag-chip.disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    textarea { min-height: 92px; resize: vertical; }
+
+    /* 優先度 (Likert style: 大きい数字 + 下に小ラベル) */
+    .priority-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    .priority-btn {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: var(--ink-dim);
+      padding: 16px 6px 14px;
+      font-family: inherit;
+      letter-spacing: 0.04em;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .priority-btn .pri-num {
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .priority-btn .pri-lbl {
+      font-size: 11px;
+      color: var(--ink-dim);
+      letter-spacing: 0.06em;
+      line-height: 1.4;
+    }
+
+    .priority-btn:hover {
+      border-color: var(--gold);
+      background: var(--card-hover);
+    }
+
+    .priority-btn.selected {
+      border-color: var(--crimson);
+      background: rgba(168, 92, 77, 0.08);
+    }
+
+    .priority-btn.selected .pri-num { color: var(--crimson); }
+    .priority-btn.selected .pri-lbl { color: var(--crimson); }
+
+    /* 保存バー */
+    .save-bar {
+      position: sticky;
+      bottom: 0;
+      background: linear-gradient(to top, var(--bg) 78%, rgba(239, 233, 220, 0));
+      padding: 24px 0 20px;
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      z-index: 2;
+    }
+
+    .save-status {
+      font-size: 11px;
+      color: var(--ink-dim);
+      letter-spacing: 0.2em;
+    }
+
+    .save-status .dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-right: 8px;
+      vertical-align: middle;
+      animation: pulse 2s infinite;
+    }
+
+    .save-status.saved .dot { background: var(--good); }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    /* レスポンシブ */
+    @media (max-width: 960px) {
+      .layout { grid-template-columns: 1fr; }
+      aside { position: relative; max-height: none; }
+      main { padding: 28px 18px; }
+      .presenter-name { font-size: 32px; }
+      .saikaku-grid { grid-template-columns: 1fr; gap: 18px; }
+      .uaam-bars { grid-template-columns: repeat(2, 1fr); }
+      .tag-pool { grid-template-columns: repeat(2, 1fr); }
+      .input-section { padding: 22px 20px 24px; }
+      .priority-row { gap: 6px; }
+      .priority-btn { padding: 12px 4px; }
+      .priority-btn .pri-num { font-size: 22px; }
+      .priority-btn .pri-lbl { font-size: 10px; }
     }
 
     @media print {
-      body { background: white; }
-      header, .panel, .toolbar, .saved { display: none !important; }
-      main { display: block; padding: 0; }
-      .sheet { box-shadow: none; border: 0; border-radius: 0; }
-      button { display: none; }
+      body { background: white; color: black; }
+      aside, .save-bar, .actions, .file-label { display: none !important; }
+      .layout { display: block; }
+      main { padding: 16px; max-width: 100%; }
+      .saikaku-profile, .input-section { page-break-inside: avoid; box-shadow: none; }
+      .input-section, .saikaku-profile { border-color: #aaa; }
+      .tag-chip.selected { background: #efe5c8; color: #000; }
+      .priority-btn.selected { background: #f0d8d2; }
+      .priority-btn.selected .pri-num { color: #a85c4d; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <section class="hero">
-      <h1>α 共鳴シート</h1>
-      <p class="lead">23人のピッチを、深く書き込むより「瞬時に接続が見える」形で記録するための簡易アプリです。入力は端末内に自動保存され、CSV/JSONで回収できます。</p>
-      <div class="toolbar" aria-label="全体操作">
-        <button type="button" id="exportCsv">CSV出力</button>
-        <button type="button" id="exportJson" class="secondary">JSON保存</button>
-        <label class="file-label" for="importJson">JSON復元</label>
-        <input id="importJson" type="file" accept="application/json" />
-        <button type="button" id="printSheet" class="ghost">印刷</button>
-      </div>
-    </section>
-  </header>
+<div class="layout">
 
+  <!-- ─── サイドバー ─── -->
+  <aside>
+    <div class="brand-en">Retreat α · 2026.05.13</div>
+    <div class="brand-jp">α 共鳴シート</div>
+    <div class="brand-sub">Resonance Record</div>
+
+    <div class="field">
+      <label for="participantName">記入者</label>
+      <input id="participantName" type="text" placeholder="あなたの名前" />
+    </div>
+
+    <div class="progress-block">
+      <div class="progress-label">記録済み</div>
+      <div class="progress-count" id="progressCount">0<span> / 23</span></div>
+      <div class="progress-bar" aria-hidden="true"><span id="progressBar"></span></div>
+    </div>
+
+    <ul class="presenter-list" id="presenterList"></ul>
+
+    <div class="top3">
+      <div class="top3-title">あなたが声をかけたい人 · TOP 3</div>
+      <div id="top3List"></div>
+    </div>
+
+    <div class="side-actions">
+      <button class="ghost" type="button" id="exportCsv">CSV出力</button>
+      <button class="ghost" type="button" id="exportJson">JSON保存</button>
+      <label class="file-label" for="importJson">JSON復元</label>
+      <input id="importJson" type="file" accept="application/json" />
+      <button class="ghost" type="button" id="printSheet">印刷</button>
+      <button class="danger" type="button" id="clearAll">全消去</button>
+    </div>
+  </aside>
+
+  <!-- ─── メイン ─── -->
   <main>
-    <aside class="panel" aria-label="発表者一覧">
-      <div class="field">
-        <label for="participantName">記入者名（任意）</label>
-        <input id="participantName" type="text" placeholder="自分の名前" />
+    <div class="header">
+      <div class="header-tag" id="headerTag">Presenter 01 / 23</div>
+      <div class="presenter-name-wrap">
+        <div class="presenter-name" id="currentName">— —</div>
+        <div class="presenter-type" id="currentType"></div>
       </div>
-      <div class="field">
-        <label for="pitcherName">発表者を追加</label>
-        <div style="display:flex; gap:8px;">
-          <input id="pitcherName" type="text" placeholder="発表者名" />
-          <button type="button" id="addPitcher" aria-label="発表者を追加">追加</button>
+      <div class="presenter-realm" id="currentRealm">—</div>
+      <div class="presenter-note" id="currentNote" style="display:none;"></div>
+    </div>
+
+    <!-- 既存才覚プロフィール -->
+    <div class="saikaku-profile">
+      <div class="saikaku-grid">
+        <div class="saikaku-cell">
+          <div class="cell-label">価値観 · Values</div>
+          <ul class="cell-axes" id="profileValues"></ul>
+        </div>
+        <div class="saikaku-cell">
+          <div class="cell-label">才能 · Talent</div>
+          <ul class="cell-axes" id="profileTalents"></ul>
+        </div>
+        <div class="saikaku-cell">
+          <div class="cell-label">情熱 · Passion</div>
+          <ul class="cell-axes" id="profilePassions"></ul>
         </div>
       </div>
-      <div class="meta"><strong id="countText">0/23 入力済</strong></div>
-      <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
-      <p class="meta">発表者ボタンを押すと、その人への共鳴シートを切り替えます。名前未定なら「発表者 1」などのまま使えます。</p>
-      <div class="pitcher-list" id="pitcherList"></div>
-      <div class="toolbar">
-        <button type="button" id="seedPitchers" class="ghost">23枠を作成</button>
-        <button type="button" id="clearAll" class="danger">全消去</button>
+      <div class="uaam-bars" id="uaamBars"></div>
+    </div>
+
+    <!-- 01: Talent Seen -->
+    <div class="input-section">
+      <div class="section-num">1</div>
+      <div class="section-label">Talent Seen</div>
+      <div class="section-title">あなたから見えた才覚</div>
+      <div class="section-hint">本人があらかじめ共有した UAAM 16軸の中から、ピッチで観取できたものを直感で3つまで。本人の自己認識とのズレが共鳴を生む。</div>
+      <div class="tag-pool" id="tagPool"></div>
+      <input type="text" id="talentFree" placeholder="言葉で足したいことがあれば..." />
+    </div>
+
+    <!-- 02: Connection -->
+    <div class="input-section">
+      <div class="section-num">2</div>
+      <div class="section-label">Connection</div>
+      <div class="section-title">繋げられる人・場・知</div>
+      <div class="section-hint">この人を誰に・どこに・何に繋げられるか。</div>
+      <textarea id="connection" placeholder="◯◯さんと話したら化学反応起きそう / △△の集まりに連れていきたい..."></textarea>
+    </div>
+
+    <!-- 03: Offering -->
+    <div class="input-section">
+      <div class="section-num">3</div>
+      <div class="section-label">Offering</div>
+      <div class="section-title">手伝えること・差し出せるもの</div>
+      <div class="section-hint">自分の才覚から、何を渡せるか。</div>
+      <textarea id="offering" placeholder="言語化・構造化・場のコーディネートで..."></textarea>
+    </div>
+
+    <!-- 04: Priority -->
+    <div class="input-section">
+      <div class="section-num">4</div>
+      <div class="section-label">Priority</div>
+      <div class="section-title">後で話したい度</div>
+      <div class="section-hint">直感で。場が終わる前に必ず声をかけたい人ほど高く。</div>
+      <div class="priority-row" id="priorityRow">
+        <button type="button" class="priority-btn" data-v="1"><span class="pri-num">I</span><span class="pri-lbl">気になる</span></button>
+        <button type="button" class="priority-btn" data-v="2"><span class="pri-num">II</span><span class="pri-lbl">少し話したい</span></button>
+        <button type="button" class="priority-btn" data-v="3"><span class="pri-num">III</span><span class="pri-lbl">話したい</span></button>
+        <button type="button" class="priority-btn" data-v="4"><span class="pri-num">IV</span><span class="pri-lbl">かなり</span></button>
+        <button type="button" class="priority-btn" data-v="5"><span class="pri-num">V</span><span class="pri-lbl">絶対声かける</span></button>
       </div>
-      <div class="summary-card">
-        <strong>当日の回し方</strong>
-        <ul>
-          <li>1人の発表ごとに30〜60秒で入力</li>
-          <li>後で話したい度が高い人から声かけ</li>
-          <li>終了後にCSVを出して関係性を一覧化</li>
-        </ul>
+    </div>
+
+    <!-- 保存バー -->
+    <div class="save-bar">
+      <div class="save-status" id="saveStatus"><span class="dot"></span>自動保存中</div>
+      <div class="actions">
+        <button type="button" class="ghost" id="prevBtn">← 前へ</button>
+        <button type="button" class="primary" id="nextBtn">次の発表者 →</button>
       </div>
-    </aside>
-
-    <form class="sheet" id="sheetForm">
-      <div class="sheet-head">
-        <div class="field" style="flex: 1 1 280px; margin-bottom:0;">
-          <label for="activePitcher">発表者名</label>
-          <input id="activePitcher" type="text" placeholder="発表者名" />
-        </div>
-        <span class="saved" id="savedNotice">保存しました</span>
-      </div>
-
-      <section class="section">
-        <h2>① この人の才覚で感じたもの（3つまで）</h2>
-        <p class="hint">直感で最大3つだけ選びます。</p>
-        <div class="chips" id="talents"></div>
-        <div class="field" style="margin-top:12px;">
-          <label for="talentOther">その他</label>
-          <input id="talentOther" type="text" placeholder="例：場づくり、編集力" />
-        </div>
-      </section>
-
-      <section class="section">
-        <h2>② 親和性を感じた領域</h2>
-        <div class="chips" id="areas"></div>
-        <div class="field" style="margin-top:12px;">
-          <label for="areaOther">その他</label>
-          <input id="areaOther" type="text" placeholder="例：観光、防災、採用" />
-        </div>
-      </section>
-
-      <section class="section">
-        <h2>③ この人と…</h2>
-        <div class="chips" id="intentions"></div>
-      </section>
-
-      <section class="section">
-        <h2>④ 手伝えること・繋げられること</h2>
-        <textarea id="support" placeholder="例：SNS発信を手伝える／教育関係者を紹介できる"></textarea>
-      </section>
-
-      <section class="section">
-        <h2>⑤ 「こうなれば動ける」があれば</h2>
-        <textarea id="condition" placeholder="例：企画書が1枚あると紹介しやすい／日程が合えば参加できる"></textarea>
-      </section>
-
-      <section class="section">
-        <h2>⑥ 後で話したい度</h2>
-        <div class="rating" id="rating"></div>
-      </section>
-
-      <div class="toolbar">
-        <button type="button" id="prevPitcher" class="ghost">前へ</button>
-        <button type="button" id="nextPitcher">保存して次へ</button>
-      </div>
-    </form>
+    </div>
   </main>
+</div>
 
-  <script>
-    const STORAGE_KEY = "alpha-resonance-sheet-v1";
-    const DEFAULT_COUNT = 23;
-    const talentOptions = ["ストーリー力", "人を巻き込む力", "分析力", "実行力", "調和力", "発信力", "営業力", "共感力", "企画力", "デザイン力", "教育力", "専門性", "世界観", "熱量", "信頼感"];
-    const areaOptions = ["AI", "教育", "地域活性", "芸術・表現", "チームビルディング", "コミュニティ", "経営", "福祉", "国際", "SNS"];
-    const intentionOptions = ["一緒に何かやりたい", "応援したい", "詳しく話したい", "紹介したい人がいる", "自分が手伝えることがある", "今後可能性を感じる"];
+<script>
+  const STORAGE_KEY = 'alpha-resonance-sheet-v2';
 
-    const emptyResponse = (name = "") => ({
-      name,
-      talents: [],
-      talentOther: "",
-      areas: [],
-      areaOther: "",
-      intentions: [],
-      support: "",
-      condition: "",
-      rating: "",
-      updatedAt: ""
+  const UAAM_PILLARS = [
+    { key: 'will',      label: '志', en: 'WHY',   tags: ['基軸力', '認知力', '転換力', '熟達力'] },
+    { key: 'knowledge', label: '知', en: 'THINK', tags: ['謙学力', '論理力', '活用力', '統率力'] },
+    { key: 'skill',     label: '技', en: 'HOW',   tags: ['本質力', '創造力', '伝達力', '協働力'] },
+    { key: 'drive',     label: '衝', en: 'ACT',   tags: ['構想力', '変革力', '実装力', '影響力'] }
+  ];
+  const TALENT_MAX = 3;
+
+  const PRESENTERS = [{"no":1,"name":"澤井ひろき","status":"両方取得済","realm":"愛する者を護りながら、人の魂を目覚めさせる場を創る者","values":["守護","正義","結束"],"talents":["場づくり","発見力","実践力"],"passions":["愛護","探求","育成"],"uaam":{"will":94,"knowledge":85,"skill":85,"drive":86},"type":"実装マスター型","note":""},{"no":2,"name":"藤原宗賢","status":"両方取得済","realm":"宇宙の法則を優しく伝える教育者","values":["シンプル","調和","継続力"],"talents":["共感力","統合力","言語化"],"passions":["人間育成","宇宙探究","場づくり"],"uaam":{"will":86,"knowledge":85,"skill":91,"drive":93},"type":"実装型イノベーター","note":""},{"no":3,"name":"山永彩葵","status":"両方取得済","realm":"愛で文化を繋ぎ、地球に平和を咲かせる人","values":["愛と幸せ","つながり","拡大発展"],"talents":["共感力","国際対話","創造力"],"passions":["中東探求","国際交流","文化継承"],"uaam":{"will":69,"knowledge":59,"skill":74,"drive":73},"type":"共感触媒型イノベーター","note":""},{"no":4,"name":"浜口奈々","status":"両方取得済","realm":"生命を踊らせる大地の導師","values":["生命愛護","進化成長","心身統一"],"talents":["身体表現","導引力","感受統合"],"passions":["身体修行","人材覚醒","自然融合"],"uaam":{"will":73,"knowledge":66,"skill":63,"drive":71},"type":"内省的ビジョナリー","note":""},{"no":5,"name":"藤田由美子","status":"両方取得済","realm":"愛で統率し、王族美学を現世に降ろす者","values":["愛","品格","天命"],"talents":["直観力","統率力","実行力"],"passions":["王族美学","帝王学","変容物語"],"uaam":{"will":79,"knowledge":73,"skill":67,"drive":58},"type":"深慮する理想主義の実践者","note":""},{"no":6,"name":"原田祐介","status":"両方取得済","realm":"地域に愛される金融教育の伝道師","values":["信頼","貢献","家族愛"],"talents":["行動力","伝達力","直観力"],"passions":["教育","地域貢献","自然体験"],"uaam":{"will":59,"knowledge":61,"skill":61,"drive":64},"type":"アイデア創発型実践者","note":""},{"no":7,"name":"坂口友亮","status":"両方取得済","realm":"人の可能性を社会に実装する者","values":["可能性","恩返し","挑戦"],"talents":["統合力","実行力","洞察力"],"passions":["内省","応援","実装"],"uaam":{"will":64,"knowledge":63,"skill":70,"drive":63},"type":"協調型実装クラフター","note":""},{"no":8,"name":"宇田川昌美","status":"才覚のみ","realm":"一体感を統合し、人の覚醒を導く存在","values":["統一性","調和","霊性"],"talents":["統合力","探究力","慈愛力"],"passions":["覚醒支援","意識探究","和の創造"],"uaam":{"will":null,"knowledge":null,"skill":null,"drive":null},"type":"","note":"メアド未確認"},{"no":9,"name":"藤田明日香","status":"才覚のみ","realm":"自由の風で人の魂を目覚めさせる者","values":["自由追求","成長信念","安定基盤"],"talents":["場感知力","実行力","統合力"],"passions":["人間開発","精神世界","物語世界"],"uaam":{"will":null,"knowledge":null,"skill":null,"drive":null},"type":"","note":""},{"no":10,"name":"塚原厚","status":"才覚のみ","realm":"使命の枠組みで世界を浸す者","values":["使命感","物語性","信頼"],"talents":["構造化","問い生成","直感行動"],"passions":["世界浸透","空間設計","探究変容"],"uaam":{"will":null,"knowledge":null,"skill":null,"drive":null},"type":"","note":""},{"no":11,"name":"根本輝尚","status":"才覚のみ","realm":"仲間と共に歩む道を照らし、一人ひとりの可能性を育て上げる人","values":["利他","共生","誠実"],"talents":["リーダーシップ","俯瞰力","場づくり"],"passions":["教育","人間関係","体感"],"uaam":{"will":null,"knowledge":null,"skill":null,"drive":null},"type":"","note":""},{"no":12,"name":"飯塚玄氣","status":"両方取得済","realm":"魂の叡智を言語化し、世界に調和の文明を織り上げる者","values":["魂の共鳴","調和の追求","真正性"],"talents":["認知力","場づくり","共鳴化"],"passions":["叡智の探求","魂友創造","本質体験"],"uaam":{"will":79,"knowledge":74,"skill":75,"drive":71},"type":"調和型アクセラレーター","note":""},{"no":13,"name":"道又正人","status":"才覚のみ","realm":"真理を優しさで包み込む覚醒メソッド創造者","values":["慈愛","本質志向","安心感"],"talents":["抽象翻訳力","共感理解","探求力"],"passions":["覚醒探求","成長支援","創造表現"],"uaam":{"will":null,"knowledge":null,"skill":null,"drive":null},"type":"","note":"メアド未確認"},{"no":14,"name":"遠山直樹","status":"UAAMのみ","realm":"(才覚領域 未取得)","values":[],"talents":[],"passions":[],"uaam":{"will":76,"knowledge":84,"skill":89,"drive":85},"type":"創造実装型イノベーター","note":"才覚領域 未取得 / UAAMのみ"},{"no":15,"name":"石井裕二","status":"UAAMのみ","realm":"(才覚領域 未取得)","values":[],"talents":[],"passions":[],"uaam":{"will":61,"knowledge":65,"skill":64,"drive":68},"type":"堅実な実装プランナー","note":"才覚領域 未取得 / UAAMのみ"},{"no":16,"name":"杉永竜之助","status":"両方取得済","realm":"人の心に火を灯し、才覚を開花させる点火師","values":["愛情","点火使命","誠実リーダーシップ"],"talents":["関係構築","才能発見","コンテンツ創造"],"passions":["教育創造","人材開発","文化継承"],"uaam":{"will":60,"knowledge":70,"skill":74,"drive":64},"type":"協創ファシリテーター","note":""},{"no":17,"name":"長田広美","status":"UAAMのみ","realm":"(才覚領域 未取得)","values":[],"talents":[],"passions":[],"uaam":{"will":84,"knowledge":71,"skill":79,"drive":68},"type":"価値軸リーダー","note":"才覚領域 未取得 / UAAMのみ"},{"no":18,"name":"秋葉勇人","status":"両方取得済","realm":"システムの本質を見抜き、人々の覚醒を通じて新しい世界を創造する者","values":["覚醒支援","未来創造","共鳴解放"],"talents":["構造把握","未来設計","調和創造"],"passions":["理念実現","能力開花","価値創出"],"uaam":{"will":75,"knowledge":78,"skill":69,"drive":74},"type":"協働型実装リーダー","note":""},{"no":19,"name":"島田智幸","status":"才覚のみ","realm":"天地の氣を循環させ、大地を蘇らせる者","values":["命の循環","共生","血脈継承"],"talents":["仕組み化","創造力","本質把握"],"passions":["大地再生","真理探究","霊性実践"],"uaam":{"will":null,"knowledge":null,"skill":null,"drive":null},"type":"","note":""},{"no":20,"name":"鈴木栄子","status":"才覚のみ","realm":"蜂と共に地球を癒し、純粋な生命を育む人","values":["純粋性","愛護","地球愛"],"talents":["没入力","共鳴力","場づくり"],"passions":["生命力","育成","表現"],"uaam":{"will":null,"knowledge":null,"skill":null,"drive":null},"type":"","note":""},{"no":21,"name":"細川さゆり","status":"両方取得済","realm":"愛で育て、地球を癒やす者","values":["愛情","調和","喜び"],"talents":["育成力","直感力","実働力"],"passions":["治癒","奉仕","探求"],"uaam":{"will":60,"knowledge":65,"skill":61,"drive":66},"type":"アイデア起点型イノベーター","note":""},{"no":22,"name":"根木まりさ","status":"両方取得済","realm":"音楽で人の心をつなぎ、笑顔の輪を世界に広げる架け橋","values":["つながり","自由","豊かさ"],"talents":["実行力","設計力","調和力"],"passions":["表現創造","知的探求","体験設計"],"uaam":{"will":56,"knowledge":68,"skill":61,"drive":70},"type":"アイデア共鳴型触媒","note":""},{"no":23,"name":"谷口尚子","status":"才覚のみ","realm":"自由な魂で成長の扉を開く導き手","values":["自由性","行動性","感受性"],"talents":["復活力","創造力","癒し力"],"passions":["成長支援","感動体験","愛情表現"],"uaam":{"will":null,"knowledge":null,"skill":null,"drive":null},"type":"","note":"5/13 14:30〜2時間中抜け+遅刻"}];
+
+  const emptyEntry = () => ({
+    talents: [],
+    talentFree: '',
+    connection: '',
+    offering: '',
+    priority: 0,
+    updatedAt: ''
+  });
+
+  let state = loadState();
+  let currentIdx = clampIdx(state.activeIndex);
+
+  function clampIdx(i) {
+    if (typeof i !== 'number' || isNaN(i)) return 0;
+    return Math.max(0, Math.min(PRESENTERS.length - 1, i));
+  }
+
+  function loadState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const p = JSON.parse(raw);
+        return {
+          participantName: p.participantName || '',
+          activeIndex: typeof p.activeIndex === 'number' ? p.activeIndex : 0,
+          entries: p.entries && typeof p.entries === 'object' ? p.entries : {}
+        };
+      }
+    } catch (e) {
+      console.warn('保存データの読み込みに失敗', e);
+    }
+    return { participantName: '', activeIndex: 0, entries: {} };
+  }
+
+  function saveState(markSaved) {
+    state.activeIndex = currentIdx;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    if (markSaved) flashSaved();
+  }
+
+  function flashSaved() {
+    const el = document.getElementById('saveStatus');
+    el.classList.add('saved');
+    el.lastChild.nodeValue = ' 保存しました';
+    clearTimeout(flashSaved.t);
+    flashSaved.t = setTimeout(() => {
+      el.classList.remove('saved');
+      el.lastChild.nodeValue = ' 自動保存中';
+    }, 1200);
+  }
+
+  function getEntry(no) {
+    if (!state.entries[no]) state.entries[no] = emptyEntry();
+    return state.entries[no];
+  }
+
+  function isComplete(entry) {
+    if (!entry) return false;
+    return Boolean(
+      (entry.talents && entry.talents.length) ||
+      (entry.talentFree && entry.talentFree.trim()) ||
+      (entry.connection && entry.connection.trim()) ||
+      (entry.offering && entry.offering.trim()) ||
+      entry.priority
+    );
+  }
+
+  function render() {
+    const p = PRESENTERS[currentIdx];
+    const entry = getEntry(p.no);
+
+    document.getElementById('headerTag').textContent =
+      `Presenter ${String(currentIdx + 1).padStart(2, '0')} / ${PRESENTERS.length}`;
+    document.getElementById('currentName').textContent = p.name;
+    document.getElementById('currentType').textContent = p.type || '';
+    document.getElementById('currentRealm').textContent = p.realm || '';
+
+    const noteEl = document.getElementById('currentNote');
+    if (p.note) {
+      noteEl.textContent = '※ ' + p.note;
+      noteEl.style.display = '';
+    } else {
+      noteEl.style.display = 'none';
+    }
+
+    renderAxes('profileValues', p.values);
+    renderAxes('profileTalents', p.talents);
+    renderAxes('profilePassions', p.passions);
+    renderUaam(p.uaam);
+    renderTagPool(entry);
+    document.getElementById('talentFree').value = entry.talentFree || '';
+    document.getElementById('connection').value = entry.connection || '';
+    document.getElementById('offering').value = entry.offering || '';
+    renderPriority(entry.priority);
+
+    document.getElementById('prevBtn').disabled = currentIdx === 0;
+    document.getElementById('nextBtn').textContent =
+      currentIdx === PRESENTERS.length - 1 ? '保存して終了' : '次の発表者 →';
+
+    renderSidebar();
+  }
+
+  function renderAxes(id, items) {
+    const ul = document.getElementById(id);
+    ul.innerHTML = '';
+    if (!items || !items.length) {
+      const li = document.createElement('li');
+      li.textContent = '—';
+      li.style.color = 'var(--ink-mute)';
+      ul.appendChild(li);
+      return;
+    }
+    items.forEach(v => {
+      const li = document.createElement('li');
+      li.textContent = v;
+      ul.appendChild(li);
     });
+  }
 
-    let state = loadState();
-    let activeIndex = Math.max(0, Math.min(state.activeIndex || 0, state.pitchers.length - 1));
+  function renderUaam(uaam) {
+    const box = document.getElementById('uaamBars');
+    box.innerHTML = '';
+    UAAM_PILLARS.forEach(pil => {
+      const v = uaam ? uaam[pil.key] : null;
+      const div = document.createElement('div');
+      div.className = 'uaam-bar';
+      if (v == null) {
+        div.innerHTML =
+          `<div class="bar-label">${pil.label} · ${pil.en}</div>` +
+          `<div class="bar-value empty">未受験</div>` +
+          `<div class="bar-track"><span style="width:0"></span></div>`;
+      } else {
+        div.innerHTML =
+          `<div class="bar-label">${pil.label} · ${pil.en}</div>` +
+          `<div class="bar-value">${v}<span style="font-size:11px;color:var(--ink-mute);letter-spacing:0.2em;"> %</span></div>` +
+          `<div class="bar-track"><span style="width:${Math.max(0, Math.min(100, v))}%"></span></div>`;
+      }
+      box.appendChild(div);
+    });
+  }
 
-    const $ = (id) => document.getElementById(id);
+  function renderTagPool(entry) {
+    const pool = document.getElementById('tagPool');
+    pool.innerHTML = '';
+    const selected = entry.talents || [];
+    const atMax = selected.length >= TALENT_MAX;
 
-    function loadState() {
+    UAAM_PILLARS.forEach(pil => {
+      const group = document.createElement('div');
+      group.className = 'pillar-group';
+      const lbl = document.createElement('div');
+      lbl.className = 'pillar-label';
+      lbl.textContent = `${pil.label} ${pil.en}`;
+      group.appendChild(lbl);
+      const chips = document.createElement('div');
+      chips.className = 'pillar-chips';
+      pil.tags.forEach(t => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        const isSel = selected.includes(t);
+        btn.className = 'tag-chip' + (isSel ? ' selected' : '') + (!isSel && atMax ? ' disabled' : '');
+        btn.textContent = t;
+        btn.addEventListener('click', () => toggleTag(t));
+        chips.appendChild(btn);
+      });
+      group.appendChild(chips);
+      pool.appendChild(group);
+    });
+  }
+
+  function renderPriority(v) {
+    document.querySelectorAll('.priority-btn').forEach(b => {
+      b.classList.toggle('selected', Number(b.dataset.v) === Number(v));
+    });
+  }
+
+  function renderSidebar() {
+    const ul = document.getElementById('presenterList');
+    ul.innerHTML = '';
+    let doneCount = 0;
+    PRESENTERS.forEach((p, i) => {
+      const entry = state.entries[p.no];
+      const done = isComplete(entry);
+      if (done) doneCount++;
+      const li = document.createElement('li');
+      li.className = (i === currentIdx ? 'active ' : '') + (done ? 'done' : '');
+      li.innerHTML = `<span class="num">${String(p.no).padStart(2, '0')}</span><span>${escapeHtml(p.name)}</span>`;
+      li.addEventListener('click', () => goTo(i));
+      ul.appendChild(li);
+    });
+    document.getElementById('progressCount').innerHTML =
+      `${doneCount}<span> / ${PRESENTERS.length}</span>`;
+    document.getElementById('progressBar').style.width =
+      `${(doneCount / PRESENTERS.length) * 100}%`;
+    renderTop3();
+  }
+
+  const ROMAN = { 1: 'I', 2: 'II', 3: 'III', 4: 'IV', 5: 'V' };
+
+  function renderTop3() {
+    const box = document.getElementById('top3List');
+    const ranked = PRESENTERS
+      .map(p => ({ p, e: state.entries[p.no] }))
+      .filter(x => x.e && x.e.priority)
+      .sort((a, b) => (b.e.priority - a.e.priority) || (a.p.no - b.p.no))
+      .slice(0, 3);
+    if (!ranked.length) {
+      box.innerHTML = '<div class="top3-empty">未入力</div>';
+      return;
+    }
+    box.innerHTML = ranked
+      .map(x => `<div class="top3-item"><span>${escapeHtml(x.p.name)}</span><span class="rank">${ROMAN[x.e.priority] || ''}</span></div>`)
+      .join('');
+  }
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function toggleTag(t) {
+    const p = PRESENTERS[currentIdx];
+    const entry = getEntry(p.no);
+    const i = entry.talents.indexOf(t);
+    if (i >= 0) entry.talents.splice(i, 1);
+    else if (entry.talents.length < TALENT_MAX) entry.talents.push(t);
+    else return;
+    entry.updatedAt = new Date().toISOString();
+    saveState();
+    renderTagPool(entry);
+    renderSidebar();
+  }
+
+  function setPriority(v) {
+    const p = PRESENTERS[currentIdx];
+    const entry = getEntry(p.no);
+    entry.priority = Number(v) || 0;
+    entry.updatedAt = new Date().toISOString();
+    saveState(true);
+    renderPriority(entry.priority);
+    renderSidebar();
+  }
+
+  function captureTexts(markSaved) {
+    const p = PRESENTERS[currentIdx];
+    const entry = getEntry(p.no);
+    entry.talentFree = document.getElementById('talentFree').value;
+    entry.connection = document.getElementById('connection').value;
+    entry.offering = document.getElementById('offering').value;
+    state.participantName = document.getElementById('participantName').value;
+    if (entry.talentFree || entry.connection || entry.offering) {
+      entry.updatedAt = new Date().toISOString();
+    }
+    saveState(markSaved);
+    renderSidebar();
+  }
+
+  function goTo(i) {
+    captureTexts(false);
+    currentIdx = clampIdx(i);
+    render();
+    saveState();
+  }
+
+  function csvEscape(v) {
+    return '"' + String(v == null ? '' : v).replaceAll('"', '""') + '"';
+  }
+
+  function priorityRoman(v) { return ROMAN[v] || ''; }
+
+  function safeFilename(s) {
+    return String(s || 'anon').replace(/[^\w぀-ヿ一-鿿]/g, '_');
+  }
+
+  function exportCsv() {
+    captureTexts(false);
+    const headers = [
+      '記入者名', '発表者No.', '発表者名', '才覚領域',
+      'Talent Seen (タグ)', 'Talent 自由記述',
+      'Connection (繋げられる人・場・知)',
+      'Offering (手伝えること)',
+      'Priority', '更新日時'
+    ];
+    const rows = PRESENTERS.map(p => {
+      const e = state.entries[p.no] || emptyEntry();
+      return [
+        state.participantName || '',
+        p.no, p.name, p.realm || '',
+        (e.talents || []).join(' / '),
+        e.talentFree || '',
+        e.connection || '',
+        e.offering || '',
+        priorityRoman(e.priority),
+        e.updatedAt || ''
+      ];
+    });
+    const csv = [headers, ...rows].map(r => r.map(csvEscape).join(',')).join('\n');
+    const stamp = new Date().toISOString().slice(0, 10);
+    download(`alpha-resonance-${stamp}-${safeFilename(state.participantName)}.csv`,
+      '﻿' + csv, 'text/csv;charset=utf-8');
+  }
+
+  function exportJson() {
+    captureTexts(false);
+    const stamp = new Date().toISOString().slice(0, 10);
+    download(`alpha-resonance-${stamp}-${safeFilename(state.participantName)}.json`,
+      JSON.stringify(state, null, 2), 'application/json');
+  }
+
+  function importJson(file) {
+    const reader = new FileReader();
+    reader.onload = () => {
       try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (raw) {
-          const parsed = JSON.parse(raw);
-          return {
-            participantName: parsed.participantName || "",
-            activeIndex: parsed.activeIndex || 0,
-            pitchers: Array.isArray(parsed.pitchers) && parsed.pitchers.length ? parsed.pitchers : seedPitcherData()
-          };
-        }
-      } catch (error) {
-        console.warn("保存データの読み込みに失敗しました", error);
+        const o = JSON.parse(reader.result);
+        if (!o || typeof o !== 'object') throw new Error('JSON形式が不正');
+        state = {
+          participantName: o.participantName || '',
+          activeIndex: typeof o.activeIndex === 'number' ? o.activeIndex : 0,
+          entries: o.entries && typeof o.entries === 'object' ? o.entries : {}
+        };
+        currentIdx = clampIdx(state.activeIndex);
+        document.getElementById('participantName').value = state.participantName;
+        saveState(true);
+        render();
+      } catch (e) {
+        alert('JSONを復元できませんでした。CSVではなくJSON保存で出力したファイルを選んでください。');
       }
-      return { participantName: "", activeIndex: 0, pitchers: seedPitcherData() };
-    }
+    };
+    reader.readAsText(file);
+  }
 
-    function seedPitcherData() {
-      return Array.from({ length: DEFAULT_COUNT }, (_, index) => emptyResponse(`発表者 ${index + 1}`));
-    }
+  function download(filename, text, type) {
+    const blob = new Blob([text], { type });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
 
-    function saveState(showNotice = false) {
-      state.activeIndex = activeIndex;
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-      if (showNotice) flashSaved();
-      renderList();
-    }
+  document.getElementById('participantName').addEventListener('input', () => captureTexts(false));
+  document.getElementById('participantName').addEventListener('blur', () => captureTexts(true));
 
-    function flashSaved() {
-      const notice = $("savedNotice");
-      notice.classList.add("show");
-      window.clearTimeout(flashSaved.timer);
-      flashSaved.timer = window.setTimeout(() => notice.classList.remove("show"), 1100);
-    }
+  ['talentFree', 'connection', 'offering'].forEach(id => {
+    const el = document.getElementById(id);
+    el.addEventListener('input', () => captureTexts(false));
+    el.addEventListener('blur', () => captureTexts(true));
+  });
 
-    function makeCheckboxGroup(containerId, name, options, selected = [], limit = Infinity) {
-      const container = $(containerId);
-      container.innerHTML = "";
-      options.forEach((option) => {
-        const label = document.createElement("label");
-        label.className = "chip";
-        label.innerHTML = `<input type="checkbox" name="${name}" value="${option}"><span>${option}</span>`;
-        const input = label.querySelector("input");
-        input.checked = selected.includes(option);
-        input.addEventListener("change", () => {
-          if (input.checked && getCheckedValues(name).length > limit) {
-            input.checked = false;
-            alert(`${limit}つまで選べます`);
-            return;
-          }
-          updateActiveFromForm(true);
-        });
-        container.appendChild(label);
-      });
-    }
+  document.querySelectorAll('.priority-btn').forEach(b => {
+    b.addEventListener('click', () => setPriority(b.dataset.v));
+  });
 
-    function makeRating(selected = "") {
-      const container = $("rating");
-      container.innerHTML = "";
-      ["1", "2", "3", "4", "5"].forEach((value) => {
-        const label = document.createElement("label");
-        label.className = "chip";
-        label.innerHTML = `<input type="radio" name="rating" value="${value}"><span>${value}</span>`;
-        const input = label.querySelector("input");
-        input.checked = selected === value;
-        input.addEventListener("change", () => updateActiveFromForm(true));
-        container.appendChild(label);
-      });
-    }
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    captureTexts(false);
+    if (currentIdx > 0) goTo(currentIdx - 1);
+  });
 
-    function getCheckedValues(name) {
-      return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map((input) => input.value);
-    }
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    captureTexts(true);
+    if (currentIdx < PRESENTERS.length - 1) goTo(currentIdx + 1);
+  });
 
-    function isComplete(item) {
-      return Boolean(item.rating || item.support.trim() || item.condition.trim() || item.talents.length || item.areas.length || item.intentions.length || item.talentOther.trim() || item.areaOther.trim());
-    }
+  document.getElementById('exportCsv').addEventListener('click', exportCsv);
+  document.getElementById('exportJson').addEventListener('click', exportJson);
+  document.getElementById('printSheet').addEventListener('click', () => window.print());
+  document.getElementById('importJson').addEventListener('change', e => {
+    const f = e.target.files[0];
+    if (f) importJson(f);
+    e.target.value = '';
+  });
+  document.getElementById('clearAll').addEventListener('click', () => {
+    if (!confirm('すべての入力を消去します。よろしいですか？')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    state = { participantName: '', activeIndex: 0, entries: {} };
+    currentIdx = 0;
+    document.getElementById('participantName').value = '';
+    render();
+  });
 
-    function renderList() {
-      const list = $("pitcherList");
-      list.innerHTML = "";
-      state.pitchers.forEach((pitcher, index) => {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = `pitcher-button${index === activeIndex ? " active" : ""}${isComplete(pitcher) ? " done" : ""}`;
-        button.textContent = pitcher.name || `発表者 ${index + 1}`;
-        button.addEventListener("click", () => {
-          updateActiveFromForm(false);
-          activeIndex = index;
-          renderForm();
-          saveState();
-        });
-        list.appendChild(button);
-      });
+  document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'ArrowLeft' && currentIdx > 0) goTo(currentIdx - 1);
+    if (e.key === 'ArrowRight' && currentIdx < PRESENTERS.length - 1) goTo(currentIdx + 1);
+  });
 
-      const doneCount = state.pitchers.filter(isComplete).length;
-      $("countText").textContent = `${doneCount}/${state.pitchers.length} 入力済`;
-      $("progressBar").style.width = state.pitchers.length ? `${Math.round(doneCount / state.pitchers.length * 100)}%` : "0%";
-    }
-
-    function renderForm() {
-      if (!state.pitchers.length) {
-        state.pitchers = seedPitcherData();
-        activeIndex = 0;
-      }
-      const item = state.pitchers[activeIndex];
-      $("participantName").value = state.participantName || "";
-      $("activePitcher").value = item.name || "";
-      $("talentOther").value = item.talentOther || "";
-      $("areaOther").value = item.areaOther || "";
-      $("support").value = item.support || "";
-      $("condition").value = item.condition || "";
-      makeCheckboxGroup("talents", "talents", talentOptions, item.talents, 3);
-      makeCheckboxGroup("areas", "areas", areaOptions, item.areas);
-      makeCheckboxGroup("intentions", "intentions", intentionOptions, item.intentions);
-      makeRating(item.rating);
-      $("prevPitcher").disabled = activeIndex === 0;
-      $("nextPitcher").textContent = activeIndex === state.pitchers.length - 1 ? "保存" : "保存して次へ";
-      renderList();
-    }
-
-    function updateActiveFromForm(showNotice = false) {
-      const item = state.pitchers[activeIndex];
-      item.name = $("activePitcher").value.trim() || `発表者 ${activeIndex + 1}`;
-      item.talents = getCheckedValues("talents");
-      item.talentOther = $("talentOther").value.trim();
-      item.areas = getCheckedValues("areas");
-      item.areaOther = $("areaOther").value.trim();
-      item.intentions = getCheckedValues("intentions");
-      item.support = $("support").value.trim();
-      item.condition = $("condition").value.trim();
-      item.rating = document.querySelector('input[name="rating"]:checked')?.value || "";
-      item.updatedAt = new Date().toISOString();
-      state.participantName = $("participantName").value.trim();
-      saveState(showNotice);
-    }
-
-    function download(filename, text, type) {
-      const blob = new Blob([text], { type });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      URL.revokeObjectURL(url);
-    }
-
-    function csvEscape(value) {
-      return `"${String(value ?? "").replaceAll('"', '""')}"`;
-    }
-
-    function exportCsv() {
-      updateActiveFromForm(false);
-      const headers = ["記入者名", "発表者名", "才覚", "才覚その他", "親和領域", "領域その他", "この人と", "手伝えること・繋げられること", "こうなれば動ける", "後で話したい度", "更新日時"];
-      const rows = state.pitchers.map((item) => [
-        state.participantName,
-        item.name,
-        item.talents.join(" / "),
-        item.talentOther,
-        item.areas.join(" / "),
-        item.areaOther,
-        item.intentions.join(" / "),
-        item.support,
-        item.condition,
-        item.rating,
-        item.updatedAt
-      ]);
-      const csv = [headers, ...rows].map((row) => row.map(csvEscape).join(",")).join("\n");
-      download(`alpha-resonance-${new Date().toISOString().slice(0, 10)}.csv`, `\ufeff${csv}`, "text/csv;charset=utf-8");
-    }
-
-    function exportJson() {
-      updateActiveFromForm(false);
-      download(`alpha-resonance-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify(state, null, 2), "application/json");
-    }
-
-    function importJson(file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        try {
-          const imported = JSON.parse(reader.result);
-          if (!Array.isArray(imported.pitchers)) throw new Error("pitchersがありません");
-          state = {
-            participantName: imported.participantName || "",
-            activeIndex: imported.activeIndex || 0,
-            pitchers: imported.pitchers.map((item, index) => ({ ...emptyResponse(`発表者 ${index + 1}`), ...item }))
-          };
-          activeIndex = Math.max(0, Math.min(state.activeIndex, state.pitchers.length - 1));
-          saveState(true);
-          renderForm();
-        } catch (error) {
-          alert("JSONを復元できませんでした。出力したJSONファイルを選んでください。");
-        }
-      };
-      reader.readAsText(file);
-    }
-
-    ["participantName", "activePitcher", "talentOther", "areaOther", "support", "condition"].forEach((id) => {
-      $(id).addEventListener("input", () => updateActiveFromForm(false));
-      $(id).addEventListener("blur", () => updateActiveFromForm(true));
-    });
-
-    $("addPitcher").addEventListener("click", () => {
-      const name = $("pitcherName").value.trim() || `発表者 ${state.pitchers.length + 1}`;
-      updateActiveFromForm(false);
-      state.pitchers.push(emptyResponse(name));
-      activeIndex = state.pitchers.length - 1;
-      $("pitcherName").value = "";
-      renderForm();
-      saveState(true);
-    });
-
-    $("pitcherName").addEventListener("keydown", (event) => {
-      if (event.key === "Enter") $("addPitcher").click();
-    });
-
-    $("seedPitchers").addEventListener("click", () => {
-      if (state.pitchers.some(isComplete) && !confirm("入力済みデータがあります。23枠に作り直しますか？")) return;
-      state.pitchers = seedPitcherData();
-      activeIndex = 0;
-      renderForm();
-      saveState(true);
-    });
-
-    $("clearAll").addEventListener("click", () => {
-      if (!confirm("すべての入力を削除します。よろしいですか？")) return;
-      localStorage.removeItem(STORAGE_KEY);
-      state = { participantName: "", activeIndex: 0, pitchers: seedPitcherData() };
-      activeIndex = 0;
-      renderForm();
-    });
-
-    $("prevPitcher").addEventListener("click", () => {
-      updateActiveFromForm(false);
-      activeIndex = Math.max(0, activeIndex - 1);
-      renderForm();
-      saveState();
-    });
-
-    $("nextPitcher").addEventListener("click", () => {
-      updateActiveFromForm(true);
-      if (activeIndex < state.pitchers.length - 1) {
-        activeIndex += 1;
-        renderForm();
-        saveState();
-      }
-    });
-
-    $("exportCsv").addEventListener("click", exportCsv);
-    $("exportJson").addEventListener("click", exportJson);
-    $("printSheet").addEventListener("click", () => window.print());
-    $("importJson").addEventListener("change", (event) => {
-      const [file] = event.target.files;
-      if (file) importJson(file);
-      event.target.value = "";
-    });
-
-    renderForm();
-  </script>
+  document.getElementById('participantName').value = state.participantName || '';
+  render();
+</script>
 </body>
 </html>
